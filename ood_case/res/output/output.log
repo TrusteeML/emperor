@@ -1,0 +1,297 @@
+2021-06-29 19:44:15,611 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:02:40,782 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:05:22,004 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:22:55,894 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:24:12,636 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:24:36,287 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:25:08,190 - INFO - Done!
+2021-06-29 20:25:08,191 - INFO - Splitting dataset into training and test...
+2021-06-29 20:25:53,311 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:26:20,148 - INFO - Done!
+2021-06-29 20:26:20,149 - INFO - Splitting dataset into training and test...
+2021-06-29 20:26:30,169 - INFO - Done!
+2021-06-29 20:26:30,169 - INFO - ########## Model init ##########
+2021-06-29 20:26:30,169 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:26:30,169 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:28:09,015 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:28:35,938 - INFO - Done!
+2021-06-29 20:28:35,938 - INFO - Splitting dataset into training and test...
+2021-06-29 20:28:45,767 - INFO - Done!
+2021-06-29 20:28:45,767 - INFO - ########## Model init ##########
+2021-06-29 20:28:45,767 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:28:45,767 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:30:49,963 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:31:12,636 - INFO - Done!
+2021-06-29 20:31:12,636 - INFO - Splitting dataset into training and test...
+2021-06-29 20:31:23,969 - INFO - Done!
+2021-06-29 20:31:23,969 - INFO - ########## Model init ##########
+2021-06-29 20:31:23,970 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:31:23,970 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:34:54,416 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:35:18,255 - INFO - Done!
+2021-06-29 20:35:18,255 - INFO - Splitting dataset into training and test...
+2021-06-29 20:35:29,798 - INFO - Done!
+2021-06-29 20:35:29,798 - INFO - ########## Model init ##########
+2021-06-29 20:35:29,798 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:35:29,798 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:35:54,572 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:36:18,530 - INFO - Done!
+2021-06-29 20:36:18,530 - INFO - Splitting dataset into training and test...
+2021-06-29 20:36:29,703 - INFO - Done!
+2021-06-29 20:36:29,704 - INFO - ########## Model init ##########
+2021-06-29 20:36:29,704 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:36:30,116 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:38:49,433 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:39:13,454 - INFO - Done!
+2021-06-29 20:39:13,455 - INFO - Splitting dataset into training and test...
+2021-06-29 20:39:26,146 - INFO - Done!
+2021-06-29 20:39:26,147 - INFO - ########## Model init ##########
+2021-06-29 20:39:26,147 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:39:26,717 - INFO - Training model: RandomForestClassifier...
+2021-06-29 20:41:44,773 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:42:09,662 - INFO - Done!
+2021-06-29 20:42:09,662 - INFO - Splitting dataset into training and test...
+2021-06-29 20:42:21,885 - INFO - Done!
+2021-06-29 20:42:21,885 - INFO - ########## Model init ##########
+2021-06-29 20:42:21,885 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:42:22,614 - INFO - Done!
+2021-06-29 20:42:27,088 - INFO - Blackbox model classification report with IID:
+2021-06-29 20:42:27,881 - INFO - 
+              precision    recall  f1-score   support
+
+           0      1.000     0.999     1.000    681929
+           1      0.950     0.895     0.921       590
+           2      1.000     1.000     1.000     38408
+           3      1.000     0.998     0.999      3088
+           4      0.999     0.999     0.999     69322
+           5      0.988     0.995     0.992      1650
+           6      0.999     0.999     0.999      1739
+           7      1.000     0.999     0.999      2381
+           8      1.000     1.000     1.000         3
+           9      1.000     0.818     0.900        11
+          10      0.994     1.000     0.997     47679
+          11      0.999     1.000     1.000      1769
+          12      0.935     0.923     0.929       452
+          13      1.000     1.000     1.000         6
+          14      0.850     0.837     0.843       196
+
+    accuracy                          0.999    849223
+   macro avg      0.981     0.964     0.972    849223
+weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 20:42:27,882 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 20:53:05,369 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 20:53:29,632 - INFO - Done!
+2021-06-29 20:53:29,633 - INFO - Splitting dataset into training and test...
+2021-06-29 20:53:40,972 - INFO - Done!
+2021-06-29 20:53:40,972 - INFO - ########## Model init ##########
+2021-06-29 20:53:40,972 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 20:53:41,769 - INFO - Done!
+2021-06-29 20:53:46,410 - INFO - Blackbox model classification report with IID:
+2021-06-29 20:53:47,274 - INFO - 
+              precision    recall  f1-score   support
+
+           0      1.000     0.999     1.000    681929
+           1      0.947     0.915     0.931       590
+           2      1.000     1.000     1.000     38408
+           3      1.000     0.999     0.999      3088
+           4      0.999     0.999     0.999     69322
+           5      0.988     0.996     0.992      1650
+           6      0.997     0.997     0.997      1739
+           7      1.000     0.999     0.999      2381
+           8      1.000     1.000     1.000         3
+           9      1.000     0.909     0.952        11
+          10      0.994     1.000     0.997     47679
+          11      0.999     0.998     0.999      1769
+          12      0.930     0.936     0.933       452
+          13      1.000     1.000     1.000         6
+          14      0.876     0.827     0.850       196
+
+    accuracy                          0.999    849223
+   macro avg      0.982     0.972     0.977    849223
+weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 20:53:47,274 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 21:06:02,911 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:06:26,494 - INFO - Done!
+2021-06-29 21:06:26,497 - INFO - Splitting dataset into training and test...
+2021-06-29 21:06:37,935 - INFO - Done!
+2021-06-29 21:06:37,935 - INFO - ########## Model init ##########
+2021-06-29 21:06:37,936 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:06:38,661 - INFO - Done!
+2021-06-29 21:06:42,653 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:06:43,456 - INFO - 
+              precision    recall  f1-score   support
+
+           0      1.000     0.999     1.000    681929
+           1      0.950     0.929     0.939       590
+           2      1.000     1.000     1.000     38408
+           3      0.999     0.999     0.999      3088
+           4      0.999     0.999     0.999     69322
+           5      0.988     0.998     0.993      1650
+           6      1.000     1.000     1.000      1739
+           7      1.000     0.999     1.000      2381
+           8      1.000     1.000     1.000         3
+           9      1.000     0.727     0.842        11
+          10      0.994     1.000     0.997     47679
+          11      1.000     0.998     0.999      1769
+          12      0.924     0.918     0.921       452
+          13      1.000     1.000     1.000         6
+          14      0.839     0.796     0.817       196
+
+    accuracy                          0.999    849223
+   macro avg      0.980     0.958     0.967    849223
+weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 21:06:43,456 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 21:06:43,527 - INFO - Done!
+2021-06-29 21:06:43,635 - INFO - Blackbox model classification report with OOD:
+2021-06-29 21:06:43,655 - INFO - 
+              precision    recall  f1-score   support
+
+           0      0.000     0.000     0.000       0.0
+           8      0.000     0.000     0.000    1000.0
+
+    accuracy                          0.000    1000.0
+   macro avg      0.000     0.000     0.000    1000.0
+weighted avg      0.000     0.000     0.000    1000.0
+
+2021-06-29 21:16:14,397 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:18:05,884 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:18:31,004 - INFO - Done!
+2021-06-29 21:18:31,005 - INFO - Splitting dataset into training and test...
+2021-06-29 21:18:43,135 - INFO - Done!
+2021-06-29 21:18:43,135 - INFO - ########## Model init ##########
+2021-06-29 21:18:43,135 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:18:43,879 - INFO - Done!
+2021-06-29 21:18:48,285 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:18:49,116 - INFO - 
+              precision    recall  f1-score   support
+
+           0      1.000     0.999     1.000    681929
+           1      0.961     0.914     0.937       590
+           2      1.000     1.000     1.000     38408
+           3      1.000     0.999     0.999      3088
+           4      0.999     0.999     0.999     69322
+           5      0.987     0.994     0.990      1650
+           6      0.997     0.999     0.998      1739
+           7      1.000     1.000     1.000      2381
+           8      1.000     1.000     1.000         3
+           9      1.000     1.000     1.000        11
+          10      0.994     1.000     0.997     47679
+          11      0.999     0.999     0.999      1769
+          12      0.934     0.934     0.934       452
+          13      1.000     0.833     0.909         6
+          14      0.877     0.837     0.856       196
+
+    accuracy                          0.999    849223
+   macro avg      0.983     0.967     0.975    849223
+weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 21:18:49,116 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 21:18:49,181 - INFO - Done!
+2021-06-29 21:18:49,288 - INFO - Blackbox model classification report with OOD:
+2021-06-29 21:18:49,300 - INFO - 
+              precision    recall  f1-score   support
+
+           0      0.000     0.000     0.000       0.0
+           8      0.000     0.000     0.000    1000.0
+
+    accuracy                          0.000    1000.0
+   macro avg      0.000     0.000     0.000    1000.0
+weighted avg      0.000     0.000     0.000    1000.0
+
+2021-06-29 21:22:07,379 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:22:29,034 - INFO - Done!
+2021-06-29 21:22:29,036 - INFO - Splitting dataset into training and test...
+2021-06-29 21:22:40,323 - INFO - Done!
+2021-06-29 21:22:40,323 - INFO - ########## Model init ##########
+2021-06-29 21:22:40,323 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:22:40,902 - INFO - Done!
+2021-06-29 21:22:44,924 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:23:30,776 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:23:53,348 - INFO - Done!
+2021-06-29 21:23:53,349 - INFO - Splitting dataset into training and test...
+2021-06-29 21:24:04,733 - INFO - Done!
+2021-06-29 21:24:04,734 - INFO - ########## Model init ##########
+2021-06-29 21:24:04,734 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:24:05,303 - INFO - Done!
+2021-06-29 21:24:09,317 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:24:10,079 - INFO - 
+                          precision    recall  f1-score   support
+
+                  BENIGN      1.000     0.999     1.000    681929
+                     Bot      0.954     0.915     0.934       590
+                    DDoS      1.000     1.000     1.000     38408
+           DoS GoldenEye      0.999     0.998     0.999      3088
+                DoS Hulk      0.999     0.999     0.999     69322
+        DoS Slowhttptest      0.991     0.997     0.994      1650
+           DoS slowloris      0.998     0.997     0.997      1739
+             FTP-Patator      1.000     1.000     1.000      2381
+              Heartbleed      1.000     1.000     1.000         3
+            Infiltration      1.000     1.000     1.000        11
+                PortScan      0.994     1.000     0.997     47679
+             SSH-Patator      0.999     0.998     0.999      1769
+  Web Attack Brute Force      0.920     0.920     0.920       452
+Web Attack Sql Injection      1.000     1.000     1.000         6
+          Web Attack XSS      0.835     0.801     0.818       196
+
+                accuracy                          0.999    849223
+               macro avg      0.979     0.975     0.977    849223
+            weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 21:24:10,079 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 21:24:10,134 - INFO - Done!
+2021-06-29 21:24:10,243 - INFO - Blackbox model classification report with OOD:
+2021-06-29 21:25:18,247 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:25:40,890 - INFO - Done!
+2021-06-29 21:25:40,891 - INFO - Splitting dataset into training and test...
+2021-06-29 21:25:52,118 - INFO - Done!
+2021-06-29 21:25:52,118 - INFO - ########## Model init ##########
+2021-06-29 21:25:52,118 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:25:52,677 - INFO - Done!
+2021-06-29 21:25:56,716 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:26:16,501 - INFO - Reading CIC-IDS-2017 dataset...
+2021-06-29 21:26:39,989 - INFO - Done!
+2021-06-29 21:26:39,990 - INFO - Splitting dataset into training and test...
+2021-06-29 21:26:51,594 - INFO - Done!
+2021-06-29 21:26:51,594 - INFO - ########## Model init ##########
+2021-06-29 21:26:51,594 - INFO - Looking for pre-trained model: RandomForestClassifier_cic_ids_2017.joblib.zip...
+2021-06-29 21:26:52,199 - INFO - Done!
+2021-06-29 21:26:56,357 - INFO - Blackbox model classification report with IID:
+2021-06-29 21:26:57,197 - INFO - 
+                          precision    recall  f1-score   support
+
+                  BENIGN      1.000     0.999     1.000    681929
+                     Bot      0.965     0.931     0.947       590
+                    DDoS      1.000     1.000     1.000     38408
+           DoS GoldenEye      1.000     0.999     1.000      3088
+                DoS Hulk      0.999     0.999     0.999     69322
+        DoS Slowhttptest      0.989     0.998     0.993      1650
+           DoS slowloris      0.999     0.998     0.998      1739
+             FTP-Patator      1.000     1.000     1.000      2381
+              Heartbleed      1.000     1.000     1.000         3
+            Infiltration      1.000     0.818     0.900        11
+                PortScan      0.994     1.000     0.997     47679
+             SSH-Patator      0.999     1.000     1.000      1769
+  Web Attack Brute Force      0.935     0.929     0.932       452
+Web Attack Sql Injection      1.000     1.000     1.000         6
+          Web Attack XSS      0.882     0.837     0.859       196
+
+                accuracy                          0.999    849223
+               macro avg      0.984     0.967     0.975    849223
+            weighted avg      0.999     0.999     0.999    849223
+
+2021-06-29 21:26:57,197 - INFO - Reading Heartbleed OOD dataset...
+2021-06-29 21:26:57,261 - INFO - Done!
+2021-06-29 21:26:57,369 - INFO - Blackbox model classification report with OOD:
+2021-06-29 21:26:57,380 - INFO - 
+              precision    recall  f1-score   support
+
+      BENIGN      0.000     0.000     0.000       0.0
+  Heartbleed      0.000     0.000     0.000    1000.0
+
+    accuracy                          0.000    1000.0
+   macro avg      0.000     0.000     0.000    1000.0
+weighted avg      0.000     0.000     0.000    1000.0
+
