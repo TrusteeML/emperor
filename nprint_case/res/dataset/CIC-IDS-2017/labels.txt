@@ -1,0 +1,19 @@
+item,label
+205.174.165.73, Kali Linux
+192.168.10.25, MacOS X
+192.168.10.50, Linux 3.11 and newer
+205.174.165.68, Linux 3.11 and newer
+192.168.10.51, Linux 3.11 and newer
+205.174.165.66, Linux 3.11 and newer
+192.168.10.19, Linux 3.11 and newer
+192.168.10.17, Linux 3.11 and newer
+192.168.10.16, Linux 3.11 and newer
+192.168.10.12, Linux 3.11 and newer
+192.168.10.9, Windows 7 or 8
+192.168.10.5, Windows 7 or 8
+192.168.10.8, Windows 7 or 8
+192.168.10.14, Windows 7 or 8
+192.168.10.15, Windows 7 or 8
+205.174.165.69, Windows 7 or 8
+205.174.165.70, Windows 7 or 8
+205.174.165.71, Windows 7 or 8

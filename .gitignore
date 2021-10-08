@@ -134,10 +134,9 @@ dmypy.json
 *.csv
 *.png
 .DS_Store
-*.pcap
 *.zip
 *.md5
 *.html
-dataset/
+nprint_case/res/dataset/CIC-IDS-2017/PCAPs/*
 *.pdf
 dt_*

@@ -1,0 +1,13 @@
+nprintml \
+  --concurrency 1 \
+  --tcp \
+  --ipv4 \
+  --aggregator index \
+  --sample-size 100 \
+  --nprint-filter "ipv4_src_32,ipv4_dst_32,tcp_sprt_16,tcp_dprt_16,tcp_seq_32,tcp_ackn_32" \
+  --compress \
+  --label-file labels.txt \
+  --save-nprint \
+  --pcap-dir pcaps/ \
+  --output nprintml \
+  --verbose
