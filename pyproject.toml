@@ -5,17 +5,17 @@ description = "This package contains reproducibility artificats for the paper 'A
 authors = ["Anonymous user <anon4papers@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "3.7"
 numpy = "^1.18.5"
 scipy = "^1.4.1"
 pandas = "^1.1.0"
 pydotplus = "^2.0.2"
 scikit-learn = "^0.23.2"
-scikit-explain = {git = "https://github.com/asjacobs92/scikit-explain.git"}
+scikit-explain = {path = "../scikit-explain/"}
 tensorflow = "^2.3.1"
 ipython = "^7.18.1"
 jupyter = "^1.0.0"
-
+nprintml = "^1.0.3"
 
 [tool.poetry.dev-dependencies]
 
