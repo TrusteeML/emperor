@@ -4,7 +4,7 @@ nprintml \
   --ipv4 \
   --aggregator index \
   --sample-size 100 \
-  --nprint-filter "ipv4_src_32,ipv4_dst_32,tcp_sprt_16,tcp_dprt_16,tcp_seq_32,tcp_ackn_32" \
+  --nprint-filter "ipv4_src_[0-9]+|ipv4_dst_[0-9]+|tcp_sprt_[0-9]+|tcp_dprt_[0-9]+|tcp_seq_[0-9]+|tcp_ackn_[0-9]+" \
   --compress \
   --label-file labels.txt \
   --save-nprint \
