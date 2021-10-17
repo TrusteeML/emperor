@@ -14,15 +14,15 @@ from nprintml.label.aggregator import registry as aggregators
 
 OUTPUT_DIR = "res/output/"
 
-# AGGREGATOR = "index"
-# LABELS_PATH = "res/dataset/single-pcap/labels.txt"
-# MODELS_DIR = "res/dataset/single-pcap/nprintml/model"
-# NPRINT_PATH = "res/dataset/single-pcap/nprintml/nprint/test.npt"
+AGGREGATOR = "index"
+LABELS_PATH = "res/dataset/single-pcap/labels.txt"
+MODELS_DIR = "res/dataset/single-pcap/nprintml/model"
+NPRINT_PATH = "res/dataset/single-pcap/nprintml/nprint/test.npt"
 
-AGGREGATOR = "pcap"
-LABELS_PATH = "res/dataset/multi-pcaps/labels.txt"
-MODELS_DIR = "res/dataset/multi-pcaps/nprintml/model"
-NPRINT_PATH = "res/dataset/multi-pcaps/nprintml/nprint"
+# AGGREGATOR = "pcap"
+# LABELS_PATH = "res/dataset/multi-pcaps/labels.txt"
+# MODELS_DIR = "res/dataset/multi-pcaps/nprintml/model"
+# NPRINT_PATH = "res/dataset/multi-pcaps/nprintml/nprint"
 
 
 def main():

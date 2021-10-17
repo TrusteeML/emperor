@@ -137,6 +137,8 @@ dmypy.json
 *.zip
 *.md5
 *.html
-nprint_case/res/dataset/CIC-IDS-2017/PCAPs/*
+nprint_case/res/dataset/CIC-IDS-2017/
+nprint_case/res/dataset/ids/pcaps/*
+nprint_case/res/dataset/os-fingerprint/pcaps/*
 *.pdf
 dt_*

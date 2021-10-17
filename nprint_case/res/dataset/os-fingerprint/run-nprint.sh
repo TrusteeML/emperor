@@ -1,9 +1,9 @@
 nprintml \
-  --concurrency 1 \
+  --concurrency 4 \
   --tcp \
   --ipv4 \
-  --aggregator index \
-  --sample-size 100 \
+  --aggregator pcap \
+  --count 10 \
   --nprint-filter "ipv4_src_[0-9]+|ipv4_dst_[0-9]+|tcp_sprt_[0-9]+|tcp_dprt_[0-9]+|tcp_seq_[0-9]+|tcp_ackn_[0-9]+" \
   --compress \
   --label-file labels.txt \

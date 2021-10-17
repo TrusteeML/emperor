@@ -16,6 +16,8 @@ tensorflow = "^2.3.1"
 ipython = "^7.18.1"
 jupyter = "^1.0.0"
 nprintml = "^1.0.3"
+pcap-splitter = "^1.0.0"
+nest-asyncio = "^1.5.1"
 
 [tool.poetry.dev-dependencies]
 
