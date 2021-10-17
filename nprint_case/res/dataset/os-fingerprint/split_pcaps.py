@@ -10,4 +10,4 @@ for file in listdir(PCAPS_FOLDER):
     if isfile(join(PCAPS_FOLDER, file)):
         print(file)
         ps = PcapSplitter(join(PCAPS_FOLDER, file))
-        print(ps.split_by_session(SPLITS_FOLDER))
+        print(ps.split_by_client_ip(SPLITS_FOLDER))

@@ -12,17 +12,25 @@ from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators
 
 
-OUTPUT_DIR = "res/output/"
+# AGGREGATOR = "index"
+# LABELS_PATH = "res/dataset/single-pcap/labels.txt"
+# MODELS_DIR = "res/dataset/single-pcap/nprintml/model"
+# NPRINT_PATH = "res/dataset/single-pcap/nprintml/nprint/test.npt"
+# OUTPUT_DIR = "res/output/single-pcap/"
 
-AGGREGATOR = "index"
-LABELS_PATH = "res/dataset/single-pcap/labels.txt"
-MODELS_DIR = "res/dataset/single-pcap/nprintml/model"
-NPRINT_PATH = "res/dataset/single-pcap/nprintml/nprint/test.npt"
 
 # AGGREGATOR = "pcap"
 # LABELS_PATH = "res/dataset/multi-pcaps/labels.txt"
 # MODELS_DIR = "res/dataset/multi-pcaps/nprintml/model"
 # NPRINT_PATH = "res/dataset/multi-pcaps/nprintml/nprint"
+# OUTPUT_DIR = "res/output/multi-pcap/"
+
+
+AGGREGATOR = "pcap"
+LABELS_PATH = "res/dataset/os-fingerprint/labels.txt"
+MODELS_DIR = "res/dataset/os-fingerprint/nprintml/model"
+NPRINT_PATH = "res/dataset/os-fingerprint/nprintml/nprint"
+OUTPUT_DIR = "res/output/os-fingerprint/"
 
 
 def main():

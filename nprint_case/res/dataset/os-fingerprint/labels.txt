@@ -1,0 +1,62 @@
+item,label
+Tuesday-WorkingHours-client-ip-192-168-10-9.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-12.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-12.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-5.pcap, Windows 7 or 8
+Friday-WorkingHours-client-ip-192-168-10-17.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-16.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-25.pcap, MacOS X
+Wednesday-WorkingHours-client-ip-192-168-10-25.pcap, MacOS X
+Monday-WorkingHours-client-ip-192-168-10-51.pcap, Linux 3.11 and newer
+Thursday-WorkingHours-client-ip-192-168-10-51.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-8.pcap, Windows 7 or 8
+Friday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer
+Thursday-WorkingHours-client-ip-192-168-10-17.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-14.pcap, Windows 7 or 8
+Monday-WorkingHours-client-ip-192-168-10-17.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-14.pcap, Windows 7 or 8
+Tuesday-WorkingHours-client-ip-192-168-10-15.pcap, Windows 7 or 8
+Monday-WorkingHours-client-ip-192-168-10-16.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-15.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-16.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-51.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-19.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-19.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-19.pcap, Linux 3.11 and newer
+Thursday-WorkingHours-client-ip-192-168-10-19.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-8.pcap, Windows 7 or 8
+Tuesday-WorkingHours-client-ip-192-168-10-16.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-15.pcap, Windows 7 or 8
+Wednesday-WorkingHours-client-ip-192-168-10-16.pcap, Linux 3.11 and newer
+Thursday-WorkingHours-client-ip-192-168-10-15.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-8.pcap, Windows 7 or 8
+Monday-WorkingHours-client-ip-192-168-10-8.pcap, Windows 7 or 8
+Friday-WorkingHours-client-ip-192-168-10-25.pcap, MacOS X
+Monday-WorkingHours-client-ip-192-168-10-9.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-9.pcap, Windows 7 or 8
+Wednesday-WorkingHours-client-ip-192-168-10-5.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-14.pcap, Windows 7 or 8
+Wednesday-WorkingHours-client-ip-192-168-10-17.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-14.pcap, Windows 7 or 8
+Tuesday-WorkingHours-client-ip-192-168-10-17.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-5.pcap, Windows 7 or 8
+Wednesday-WorkingHours-client-ip-192-168-10-9.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-5.pcap, Windows 7 or 8
+Friday-WorkingHours-client-ip-192-168-10-12.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-51.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-9.pcap, Windows 7 or 8
+Tuesday-WorkingHours-client-ip-192-168-10-51.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-19.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-5.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-25.pcap, MacOS X
+Friday-WorkingHours-client-ip-192-168-10-15.pcap, Windows 7 or 8
+Monday-WorkingHours-client-ip-192-168-10-25.pcap, MacOS X
+Friday-WorkingHours-client-ip-192-168-10-14.pcap, Windows 7 or 8
+Thursday-WorkingHours-client-ip-192-168-10-12.pcap, Linux 3.11 and newer
+Tuesday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer
+Monday-WorkingHours-client-ip-192-168-10-12.pcap, Linux 3.11 and newer
+Friday-WorkingHours-client-ip-192-168-10-8.pcap, Windows 7 or 8
+Wednesday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer
+Wednesday-WorkingHours-client-ip-192-168-10-50.pcap, Linux 3.11 and newer

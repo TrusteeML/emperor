@@ -1,5 +1,5 @@
 nprintml \
-  --concurrency 4 \
+  --concurrency 2 \
   --tcp \
   --ipv4 \
   --aggregator pcap \

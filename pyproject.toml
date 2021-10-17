@@ -18,6 +18,8 @@ jupyter = "^1.0.0"
 nprintml = "^1.0.3"
 pcap-splitter = "^1.0.0"
 nest-asyncio = "^1.5.1"
+mxnet = "^1.8.0"
+lightgbm = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
 
