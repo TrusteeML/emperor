@@ -140,5 +140,8 @@ dmypy.json
 nprint_case/res/dataset/CIC-IDS-2017/
 nprint_case/res/dataset/ids/pcaps/*
 nprint_case/res/dataset/os-fingerprint/pcaps/*
+nprint_case/res/dataset/os-fingerprint/pcaps-ip/*
+nprint_case/res/dataset/os-fingerprint/pcaps-100k/*
 *.pdf
 dt_*
+*.npt

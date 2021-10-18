@@ -47,6 +47,7 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(X_indexes, y, train_size=0.7)
     X_train = X.iloc[X_train]
     X_test = X.iloc[X_test]
+    logger.log("X size: {}; y size: {}".format(len(X), len(y)))
     logger.log("Done!")
 
     logger.log("Loading nPrintML model...")
@@ -66,8 +67,8 @@ def main():
         y_train,
         max_iter=100,
         max_leaf_nodes=None,
-        num_samples=100,
-        # samples_size=0.01,
+        # num_samples=10,
+        samples_size=0.8,
         # ccp_alpha=0.00000001,
         verbose=True,
     )
