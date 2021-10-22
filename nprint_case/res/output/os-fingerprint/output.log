@@ -1,0 +1,85 @@
+2021-10-20 21:01:47,995 - INFO - Reading nPrint dataset...
+2021-10-20 21:02:33,921 - INFO - Reading nPrint dataset...
+2021-10-20 21:15:36,280 - INFO - X size: 48091; y size: 48091
+2021-10-20 21:15:36,280 - INFO - Done!
+2021-10-20 21:15:36,280 - INFO - Loading nPrintML model...
+2021-10-20 21:15:36,283 - INFO - Done!
+2021-10-20 21:15:36,743 - INFO - Blackbox model classification report with IID:
+2021-10-20 21:15:37,039 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         1
+ Linux 3.11 and newer      0.960     0.957     0.958      6834
+              MacOS X      0.994     0.858     0.921      1206
+       Windows 7 or 8      0.946     0.973     0.959      6387
+
+             accuracy                          0.956     14428
+            macro avg      0.725     0.697     0.710     14428
+         weighted avg      0.956     0.956     0.956     14428
+
+2021-10-20 21:15:37,039 - INFO - Using Classification Dagger algorithm to extract DT...
+2021-10-21 20:40:53,240 - INFO - Reading nPrint dataset...
+2021-10-21 20:53:53,857 - INFO - X size: 48091; y size: 48091
+2021-10-21 20:53:53,857 - INFO - Done!
+2021-10-21 20:53:53,857 - INFO - Loading nPrintML model...
+2021-10-21 20:53:53,859 - INFO - Done!
+2021-10-21 20:53:54,283 - INFO - Blackbox model classification report with IID:
+2021-10-21 20:53:54,559 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         3
+ Linux 3.11 and newer      0.963     0.954     0.959      6651
+              MacOS X      0.995     0.861     0.923      1216
+       Windows 7 or 8      0.945     0.978     0.961      6558
+
+             accuracy                          0.957     14428
+            macro avg      0.726     0.698     0.711     14428
+         weighted avg      0.957     0.957     0.957     14428
+
+2021-10-21 20:53:54,559 - INFO - Using Classification Dagger algorithm to extract DT...
+2021-10-21 20:55:33,615 - INFO - Reading nPrint dataset...
+2021-10-21 21:08:38,703 - INFO - X size: 48091; y size: 48091
+2021-10-21 21:08:38,703 - INFO - Done!
+2021-10-21 21:08:38,703 - INFO - Loading nPrintML model...
+2021-10-21 21:08:38,705 - INFO - Done!
+2021-10-21 21:08:39,174 - INFO - Blackbox model classification report with IID:
+2021-10-21 21:08:39,452 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         1
+ Linux 3.11 and newer      0.960     0.959     0.960      6729
+              MacOS X      0.999     0.853     0.921      1201
+       Windows 7 or 8      0.949     0.976     0.962      6497
+
+             accuracy                          0.958     14428
+            macro avg      0.727     0.697     0.710     14428
+         weighted avg      0.958     0.958     0.957     14428
+
+2021-10-21 21:08:39,453 - INFO - Using Classification Dagger algorithm to extract DT...
+2021-10-21 21:09:22,118 - INFO - ########## Explanation validation ##########
+2021-10-21 21:09:22,119 - INFO - Model explanation 25 local fidelity: 0.9807649640761672
+2021-10-21 21:09:22,142 - INFO - Model explanation global fidelity report:
+2021-10-21 21:09:22,415 - INFO - 
+                       precision    recall  f1-score   support
+
+ Linux 3.11 and newer      0.963     0.971     0.967      6721
+              MacOS X      0.948     0.964     0.956      1026
+       Windows 7 or 8      0.974     0.963     0.968      6681
+
+             accuracy                          0.967     14428
+            macro avg      0.962     0.966     0.964     14428
+         weighted avg      0.967     0.967     0.967     14428
+
+2021-10-21 21:09:22,415 - INFO - Model explanation classification report:
+2021-10-21 21:09:22,688 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         1
+ Linux 3.11 and newer      0.935     0.941     0.938      6729
+              MacOS X      0.955     0.829     0.888      1201
+       Windows 7 or 8      0.934     0.950     0.942      6497
+
+             accuracy                          0.936     14428
+            macro avg      0.706     0.680     0.692     14428
+         weighted avg      0.936     0.936     0.935     14428
+
