@@ -1,9 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-LABELS_INFO = "labels-os.txt"
-DATASET_INFO = "dataset_info.csv"
-PLOTS_DIR = "plots"
+LABELS_INFO = "../labels-os.txt"
+DATASET_INFO = "../dataset_info.csv"
+PLOTS_DIR = "../plots"
 
 
 def plot_unique_count(df, column):
@@ -18,6 +18,7 @@ def plot_unique_count(df, column):
         df[column].value_counts().plot(kind="bar")
 
     plt.savefig("{}/{}_unique.pdf".format(PLOTS_DIR, column))
+    plt.close()
 
 
 def plot_cdf(df, column):
@@ -33,21 +34,28 @@ def plot_cdf(df, column):
     stats_df = stats_df.reset_index()
 
     stats_df.plot.bar(x=column, y=["pdf", "cdf"], grid=True)
-    plt.savefig("{}/{}_cdf.pdf".format(PLOTS_DIR, column))
+    plt.savefig("{}/{}_cdf_bar.pdf".format(PLOTS_DIR, column))
+    plt.close()
+
+    stats_df.plot(x=column, y=["pdf", "cdf"], grid=True)
+    plt.savefig("{}/{}_cdf_line.pdf".format(PLOTS_DIR, column))
+    plt.close()
 
 
 def plot_hist(df, column):
     df[column].hist()
     plt.savefig("{}/{}_hist.pdf".format(PLOTS_DIR, column))
-
-
+    plt.close()
+   
+   
 def plot_dataset():
     print("Reading dataset info file...")
     df = pd.read_csv(DATASET_INFO)
     print(df)
     for column in df.columns:
-        # plot_unique_count(df, column)
-        # plot_hist(df, column)
+        print('Column:', column)
+        plot_unique_count(df, column)
+        plot_hist(df, column)
         plot_cdf(df, column)
 
 
