@@ -70,8 +70,7 @@ int main(int argc, char* argv[])
         cout << pcap_path << endl;
          // open a pcap file for reading
         pcpp::PcapFileReaderDevice reader(entry.path());
-        if (!reader.open())
-        {
+        if (!reader.open()) {
             printf("Error opening the pcap file\n");
             return 1;
         }
@@ -79,8 +78,7 @@ int main(int argc, char* argv[])
         // read the first packet from the file (in this case the
         // file contains only one packet)
         pcpp::RawPacket raw_packet;
-        if (!reader.getNextPacket(raw_packet))
-        {
+        if (!reader.getNextPacket(raw_packet)) {
             printf("Couldn't read the first packet in the file\n");
             return 1;
         }
@@ -89,8 +87,7 @@ int main(int argc, char* argv[])
         pcpp::Packet parsed_packet(&raw_packet);
 
         // check if it's an IPv4 packet
-        if (parsed_packet.isPacketOfType(pcpp::IPv4))
-        {
+        if (parsed_packet.isPacketOfType(pcpp::IPv4)) {
             // extract source and dest IPs
            // extract source and dest IPs
             auto src_ip = parsed_packet.getLayerOfType<pcpp::IPv4Layer>()->getSrcIPv4Address().toString();
