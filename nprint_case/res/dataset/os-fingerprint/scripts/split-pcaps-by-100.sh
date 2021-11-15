@@ -1,9 +1,9 @@
 #!/bin/bash
 # NOTE : Quote it else use array to avoid problems #
-FILES="pcaps-ip/*"
+FILES="../pcaps-100k/*"
 for f in $FILES
 do
   echo "Processing $f file..."
-  echo ${f//pcaps-ip\//}
-  editcap -r $f "pcaps-100k/100k-${f//pcaps-ip\//}" 1-100000
+  echo ${f//pcaps-100k\//}
+  editcap -c 100 $f "pcaps-100/${f//pcaps-100k\//}"
 done

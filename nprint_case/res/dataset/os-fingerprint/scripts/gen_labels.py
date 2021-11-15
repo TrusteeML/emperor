@@ -12,9 +12,9 @@ from os.path import isfile, join
 from multiprocessing import Pool
 
 
-PCAPS_FOLDER = "pcaps/"
-LABELS_INPUT = "labels-os.txt"
-LABELS_OUTPUT = "labels.txt"
+PCAPS_FOLDER = "../pcaps/"
+LABELS_INPUT = "../labels-os.txt"
+LABELS_OUTPUT = "../labels.txt"
 
 POOL_SIZE = 8
 

@@ -68,7 +68,7 @@ def main():
         max_iter=100,
         max_leaf_nodes=None,
         # num_samples=10,
-        samples_size=0.8,
+        samples_size=0.5,
         # ccp_alpha=0.00000001,
         verbose=True,
     )
@@ -103,7 +103,7 @@ def main():
 
     dot_data = tree.export_graphviz(
         dt,
-        class_names=y.unique(),
+        class_names=sorted(y.unique()),  # [1:] to remove Kali linux instance
         feature_names=X.columns,
         filled=True,
         rounded=True,

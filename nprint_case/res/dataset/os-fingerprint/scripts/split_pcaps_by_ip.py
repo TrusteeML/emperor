@@ -3,8 +3,8 @@ from os.path import isfile, join
 
 from pcap_splitter.splitter import PcapSplitter
 
-PCAPS_FOLDER = "../CIC-IDS-2017/pcaps/"
-SPLITS_FOLDER = "pcaps/"
+PCAPS_FOLDER = "../../CIC-IDS-2017/pcaps/"
+SPLITS_FOLDER = "../pcaps-ip/"
 
 # PCAPS_FOLDER = "pcaps/"
 # SPLITS_FOLDER = "pcaps-100k/"
