@@ -1,4 +1,6 @@
 import graphviz
+import glob
+import pandas
 import numpy as np
 
 from skexplain.imitation import ClassificationDagger
@@ -88,7 +90,7 @@ def main():
     dagger.fit(
         X_train,
         y_train,
-        max_iter=100,
+        num_iter=100,
         max_leaf_nodes=None,
         num_samples=100000,
         # samples_size=0.01,
@@ -141,3 +143,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # df_list = []
+    # datasets = glob.glob(DF_TRAIN_TEST_PATH + "/*.zip")
+    # for dataset_path in datasets:
+    #     df = pandas.read_csv(dataset_path, header=0).fillna(-1)
+    #     df_list.append(df)
+    # df = pandas.concat(df_list, axis=0, ignore_index=True)
+
+    # print(df)
+    # print(df.columns)
+    # print(df.groupby(' Label').count())

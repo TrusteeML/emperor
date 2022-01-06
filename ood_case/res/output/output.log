@@ -295,3 +295,6 @@ Web Attack Sql Injection      1.000     1.000     1.000         6
    macro avg      0.000     0.000     0.000    1000.0
 weighted avg      0.000     0.000     0.000    1000.0
 
+2021-11-16 14:16:32,039 - INFO - Reading CIC-IDS-2017 dataset...
+2021-11-16 14:20:36,501 - INFO - Reading CIC-IDS-2017 dataset...
+2021-11-16 14:21:02,773 - INFO - Done!

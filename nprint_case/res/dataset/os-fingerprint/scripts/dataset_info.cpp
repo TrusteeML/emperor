@@ -14,7 +14,7 @@
 using namespace std;
 namespace fs = std::__fs::filesystem;
 
-string PCAPS_FOLDER = "../pcaps-100k/";
+string PCAPS_FOLDER = "../pcaps/";
 string DATASET_OUTPUT = "../dataset_info.csv"; 
 
 vector<string> TCP_HEADERS = {

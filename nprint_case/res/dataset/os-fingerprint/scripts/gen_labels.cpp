@@ -11,9 +11,9 @@
 using namespace std;
 namespace fs = std::__fs::filesystem;
 
-string PCAPS_FOLDER = "../pcaps-100k/";
+string PCAPS_FOLDER = "../pcaps-100/";
 string LABELS_INPUT = "../labels-os.txt";
-string LABELS_OUTPUT = "../labels-100k.txt"; 
+string LABELS_OUTPUT = "../labels-100.txt"; 
 
 map<string, string> read_labels() {
     map<string, string> labels;

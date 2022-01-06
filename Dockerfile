@@ -9,8 +9,8 @@ RUN sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com/old-releases.ubuntu.com
 
 # deps
 RUN apt update && apt install -y libpcap-dev python3-dev python3-pip wget make build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm curl git \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+  libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm curl git \
+  libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # install pcapplusplus
 RUN wget https://github.com/seladb/PcapPlusPlus/releases/download/v21.05/pcapplusplus-21.05-ubuntu-20.04-gcc-9.tar.gz

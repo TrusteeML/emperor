@@ -83,3 +83,133 @@
             macro avg      0.706     0.680     0.692     14428
          weighted avg      0.936     0.936     0.935     14428
 
+2021-11-07 17:52:41,601 - INFO - Reading nPrint dataset...
+2021-11-07 18:09:37,255 - INFO - X size: 57975; y size: 57975
+2021-11-07 18:09:37,257 - INFO - Done!
+2021-11-07 18:09:37,257 - INFO - Loading nPrintML model...
+2021-11-08 12:58:22,181 - INFO - Reading nPrint dataset...
+2021-11-08 16:15:02,647 - INFO - Reading nPrint dataset...
+2021-11-08 20:07:37,255 - INFO - X size: 57975; y size: 57975
+2021-11-08 20:07:37,259 - INFO - Done!
+2021-11-08 20:07:37,259 - INFO - Loading nPrintML model...
+2021-11-08 20:07:37,304 - INFO - Done!
+2021-11-08 20:09:28,626 - INFO - Blackbox model classification report with IID:
+2021-11-08 20:09:28,952 - INFO - 
+                       precision    recall  f1-score   support
+
+ Linux 3.11 and newer      0.987     0.982     0.985      8454
+              MacOS X      0.941     0.969     0.955      1507
+       Windows 7 or 8      0.991     0.990     0.991      7432
+
+             accuracy                          0.985     17393
+            macro avg      0.973     0.981     0.977     17393
+         weighted avg      0.985     0.985     0.985     17393
+
+2021-11-08 20:09:28,952 - INFO - Using Classification Dagger algorithm to extract DT...
+2021-11-08 21:29:53,371 - INFO - ########## Explanation validation ##########
+2021-11-08 21:29:53,376 - INFO - Model explanation 77 local fidelity: 0.9717811209927
+2021-11-08 21:29:54,023 - INFO - Model explanation global fidelity report:
+2021-11-08 21:29:54,286 - INFO - 
+                       precision    recall  f1-score   support
+
+ Linux 3.11 and newer      0.955     0.965     0.960      8416
+              MacOS X      0.873     0.839     0.856      1551
+       Windows 7 or 8      0.979     0.975     0.977      7426
+
+             accuracy                          0.958     17393
+            macro avg      0.936     0.926     0.931     17393
+         weighted avg      0.958     0.958     0.958     17393
+
+2021-11-08 21:29:54,286 - INFO - Model explanation classification report:
+2021-11-08 21:29:54,555 - INFO - 
+                       precision    recall  f1-score   support
+
+ Linux 3.11 and newer      0.953     0.958     0.955      8454
+              MacOS X      0.852     0.843     0.847      1507
+       Windows 7 or 8      0.976     0.971     0.974      7432
+
+             accuracy                          0.954     17393
+            macro avg      0.927     0.924     0.925     17393
+         weighted avg      0.954     0.954     0.954     17393
+
+2021-11-08 21:52:31,811 - INFO - Reading nPrint dataset...
+2021-11-09 01:29:58,553 - INFO - X size: 57975; y size: 57975
+2021-11-09 01:29:58,556 - INFO - Done!
+2021-11-09 01:29:58,556 - INFO - Loading nPrintML model...
+2021-11-09 01:29:58,595 - INFO - Done!
+2021-11-09 01:31:05,567 - INFO - Blackbox model classification report with IID:
+2021-11-09 01:31:05,896 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         1
+ Linux 3.11 and newer      0.986     0.981     0.983      8321
+              MacOS X      0.942     0.971     0.957      1485
+       Windows 7 or 8      0.990     0.990     0.990      7586
+
+             accuracy                          0.984     17393
+            macro avg      0.730     0.735     0.733     17393
+         weighted avg      0.984     0.984     0.984     17393
+
+2021-11-09 01:31:05,896 - INFO - Using Classification Dagger algorithm to extract DT...
+2021-11-09 02:30:23,236 - INFO - ########## Explanation validation ##########
+2021-11-09 02:30:23,239 - INFO - Model explanation 73 local fidelity: 0.9675381331109051
+2021-11-09 02:30:23,855 - INFO - Model explanation global fidelity report:
+2021-11-09 02:30:24,145 - INFO - 
+                       precision    recall  f1-score   support
+
+ Linux 3.11 and newer      0.950     0.962     0.956      8275
+              MacOS X      0.877     0.824     0.850      1530
+       Windows 7 or 8      0.978     0.976     0.977      7588
+
+             accuracy                          0.956     17393
+            macro avg      0.935     0.921     0.928     17393
+         weighted avg      0.956     0.956     0.956     17393
+
+2021-11-09 02:30:24,145 - INFO - Model explanation classification report:
+2021-11-09 02:30:24,433 - INFO - 
+                       precision    recall  f1-score   support
+
+           Kali Linux      0.000     0.000     0.000         1
+ Linux 3.11 and newer      0.951     0.958     0.955      8321
+              MacOS X      0.860     0.832     0.846      1485
+       Windows 7 or 8      0.976     0.974     0.975      7586
+
+             accuracy                          0.954     17393
+            macro avg      0.697     0.691     0.694     17393
+         weighted avg      0.954     0.954     0.954     17393
+
+2022-01-03 22:24:15,396 - INFO - Reading nPrint dataset...
+2022-01-04 11:52:42,120 - INFO - Reading nPrint dataset...
+2022-01-04 11:55:52,590 - INFO - Loading nPrintML model...
+2022-01-04 11:55:52,597 - INFO - Done!
+2022-01-04 14:40:04,778 - INFO - Reading nPrint dataset...
+2022-01-04 14:41:54,008 - INFO - Reading nPrint dataset...
+2022-01-04 14:44:46,275 - INFO - Loading nPrintML model...
+2022-01-04 14:44:46,282 - INFO - Done!
+2022-01-04 14:47:44,639 - INFO - Reading nPrint dataset...
+2022-01-04 14:50:19,067 - INFO - Loading nPrintML model...
+2022-01-04 14:50:19,071 - INFO - Done!
+2022-01-04 14:50:46,930 - INFO - Reading nPrint dataset...
+2022-01-04 14:53:22,769 - INFO - Loading nPrintML model...
+2022-01-04 14:53:22,771 - INFO - Done!
+2022-01-04 15:05:14,963 - INFO - Reading nPrint dataset...
+2022-01-04 15:08:09,643 - INFO - Loading nPrintML model...
+2022-01-04 15:08:09,650 - INFO - Done!
+2022-01-05 19:08:24,518 - INFO - Reading nPrint dataset...
+2022-01-05 19:11:26,750 - INFO - Loading nPrintML model...
+2022-01-05 19:11:26,760 - INFO - Done!
+2022-01-05 19:30:40,585 - INFO - Reading nPrint dataset...
+2022-01-05 19:33:43,017 - INFO - Loading nPrintML model...
+2022-01-05 19:33:43,025 - INFO - Done!
+2022-01-05 19:35:26,773 - INFO - Reading nPrint dataset...
+2022-01-05 19:38:31,655 - INFO - Loading nPrintML model...
+2022-01-05 19:38:31,666 - INFO - Done!
+2022-01-05 20:00:29,620 - INFO - Reading nPrint dataset...
+2022-01-05 20:03:38,425 - INFO - Loading nPrintML model...
+2022-01-05 20:03:38,432 - INFO - Done!
+2022-01-05 20:33:28,704 - INFO - Reading nPrint dataset...
+2022-01-05 20:36:26,928 - INFO - Loading nPrintML model...
+2022-01-05 20:36:26,935 - INFO - Done!
+2022-01-05 20:39:43,445 - INFO - Reading nPrint dataset...
+2022-01-05 20:42:38,735 - INFO - Loading nPrintML model...
+2022-01-05 20:42:38,744 - INFO - Done!
