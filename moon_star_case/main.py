@@ -1,7 +1,8 @@
-import random
-import graphviz
+# import random
 
-from matplotlib import image
+# import graphviz
+
+# from matplotlib import image
 import numpy as np
 import cv2
 import torch
@@ -11,15 +12,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-from pprint import pprint
-
-from sklearn import tree
-from sklearn.metrics import classification_report
+# from sklearn import tree
+# from sklearn.metrics import classification_report
 from skexplain.utils import log
-from skexplain.imitation import ClassificationDagger
+
+# from skexplain.imitation import ClassificationDagger
 from skexplain.report import trust_report
 
-from torchvision.utils import make_grid as make_grid
+# from torchvision.utils import make_grid as make_grid
 
 
 # Dataset specification
@@ -177,7 +177,7 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
-    def fit(self, X, y, batch_size=100, epochs=5):
+    def fit(self, X, y, batch_size=100, epochs=1):
         train_data = utils.TensorDataset(X, y)
         train_loader = utils.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
@@ -333,6 +333,8 @@ trust_report(
     X_test=X_test,
     y_train=y_train,
     y_test=y_test,
+    max_iter=1,
+    dagger_num_iter=1,
     class_names=["star", "moon"],
     output="res/output/dt_trust_report.pdf",
     logger=logger,

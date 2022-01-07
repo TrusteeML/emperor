@@ -137,6 +137,7 @@ dmypy.json
 *.zip
 *.md5
 *.html
+iot_case/res/dataset/original_files/
 nprint_case/res/dataset/CIC-IDS-2017/
 nprint_case/res/dataset/ids/pcaps/*
 nprint_case/res/dataset/pcaps-jordan/
