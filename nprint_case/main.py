@@ -44,24 +44,24 @@ def main():
     y = df["label"]
     X = df.drop(labels=["label"], axis=1)
 
-    # X_indexes = np.arange(0, X.shape[0])
-    # X_train, X_test, y_train, y_test = train_test_split(X_indexes, y, train_size=0.7)
-    # X_train = X.iloc[X_train]
-    # X_test = X.iloc[X_test]
-    # logger.log("X size: {}; y size: {}".format(len(X), len(y)))
-    # logger.log("Done!")
+    X_indexes = np.arange(0, X.shape[0])
+    X_train, X_test, y_train, y_test = train_test_split(X_indexes, y, train_size=0.7)
+    X_train = X.iloc[X_train]
+    X_test = X.iloc[X_test]
+    logger.log("X size: {}; y size: {}".format(len(X), len(y)))
+    logger.log("Done!")
 
     logger.log("Loading nPrintML model...")
     blackbox = TabularPredictor.load(MODELS_DIR, verbosity=1)
     logger.log("Done!")
 
-    # y_pred = blackbox.predict(X_test)
-    # logger.log("Blackbox model classification report with IID:")
-    # logger.log("\n{}".format(classification_report(y_test, y_pred, digits=3)))
+    y_pred = blackbox.predict(X_test)
+    logger.log("Blackbox model classification report with IID:")
+    logger.log("\n{}".format(classification_report(y_test, y_pred, digits=3)))
 
-    # # Decision tree extraction
-    # logger.log("Using Classification Dagger algorithm to extract DT...")
-    # dagger = ClassificationDagger(expert=blackbox)
+    # Decision tree extraction
+    logger.log("Using Classification Dagger algorithm to extract DT...")
+    dagger = ClassificationDagger(expert=blackbox)
 
     # dagger.fit(
     #     X_train,
@@ -113,14 +113,17 @@ def main():
     # graph = graphviz.Source(dot_data)
     # graph.render("{}/dt_{}_{}_{}".format(OUTPUT_DIR, "TabularPredictor", "dagger", dt.get_n_leaves()))
 
-    trust_report(
-        blackbox,
-        X=X,
-        y=y,
-        output="{}/dt_trust_report.pdf".format(OUTPUT_DIR),
-        class_names=sorted(y.unique()),  # [1:] to remove Kali linux instance
-        feature_names=X.columns,
-    )
+    # logger.log(
+    #     trust_report(
+    #         blackbox,
+    #         X=X,
+    #         y=y,
+    #         skip_retrain=True,
+    #         output_dir=OUTPUT_DIR,
+    #         class_names=sorted(y.unique()),  # [1:] to remove Kali linux instance
+    #         feature_names=X.columns,
+    #     )
+    # )
 
 
 if __name__ == "__main__":

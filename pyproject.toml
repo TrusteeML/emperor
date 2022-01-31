@@ -12,10 +12,10 @@ pandas = "^1.1.0"
 pydotplus = "^2.0.2"
 scikit-learn = "^0.23.2"
 scikit-explain = {path = "../scikit-explain", develop=true}
+nprintml = {path = "../nprintml", develop=true}
 tensorflow = "^2.3.1"
 ipython = "^7.18.1"
 jupyter = "^1.0.0"
-nprintml = "^1.0.3"
 pcap-splitter = "^1.0.0"
 nest-asyncio = "^1.5.1"
 mxnet = "1.8.0.post0"
@@ -24,8 +24,8 @@ torch = "^1.10.1"
 torchvision = "^0.11.2"
 prettytable = "^2.5.0"
 opencv-python = "^4.5.2"
-matplotlib = "^3.3.4"
-lightgbm = "^3.3.1"
+lightgbm = "^3.3.2"
+matplotlib = "^3.5.1"
 
 [tool.poetry.dev-dependencies]
 

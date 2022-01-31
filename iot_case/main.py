@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 OUTPUT_PATH = "res/output"
-DF_DATASET_PATH = "res/dataset/zip_files/"
-# IOT_DATASET_META["is_dir"] = False
+DF_DATASET_PATH = "res/dataset/zip_files/16-09-23-labeled.csv.zip"
+IOT_DATASET_META["is_dir"] = False
 
 
 def main():
@@ -46,17 +46,19 @@ def main():
         if gini <= 0.1 and ccp > dagger_ccp_alpha:
             dagger_ccp_alpha = ccp
 
-    trust_report(
-        blackbox,
-        X=X,
-        y=y,
-        logger=logger,
-        max_iter=1,
-        dagger_num_iter=1,
-        dagger_ccp_alpha=dagger_ccp_alpha,
-        output="{}/dt_trust_report".format(OUTPUT_PATH),
-        feature_names=feature_names,
-        class_names=IOT_DATASET_META["classes"],
+    logger.log(
+        trust_report(
+            blackbox,
+            X=X,
+            y=y,
+            logger=logger,
+            max_iter=1,
+            dagger_num_iter=1,
+            dagger_ccp_alpha=dagger_ccp_alpha,
+            output_dir=OUTPUT_PATH,
+            feature_names=feature_names,
+            class_names=IOT_DATASET_META["classes"],
+        )
     )
 
 

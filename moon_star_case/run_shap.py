@@ -1,8 +1,7 @@
-# import random
+import pprint
 
-# import graphviz
+import shap
 
-# from matplotlib import image
 import numpy as np
 import cv2
 import torch
@@ -12,12 +11,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-# from sklearn import tree
-# from sklearn.metrics import classification_report
 from skexplain.utils import log
 
-# from skexplain.imitation import ClassificationDagger
-from skexplain.report import trust_report
+from matplotlib.colors import LinearSegmentedColormap
+
 
 # from torchvision.utils import make_grid as make_grid
 
@@ -43,9 +40,9 @@ cow = cow
 num_rows, num_cols = bunny.shape[:2]
 
 # bottom right: 46 39 to 60 70
-translation_matrix = np.float32([[1, 0, 0], [0, 1, 0]])
-img_translation = cv2.warpAffine(cow, translation_matrix, (num_cols, num_rows))
-plt.imshow(img_translation, cmap="gray")
+# translation_matrix = np.float32([[1, 0, 0], [0, 1, 0]])
+# img_translation = cv2.warpAffine(cow, translation_matrix, (num_cols, num_rows))
+# plt.imshow(img_translation, cmap="gray")
 
 
 biased_train_bun = []
@@ -103,52 +100,6 @@ unbiased_moons = unbiased_train_bun
 biased_stars = biased_train_cow
 biased_moons = biased_train_bun
 
-# np.set_printoptions(threshold=sys.maxsize)
-
-
-# logger.log("\n".join(["".join(["{}".format(item) for item in row]) for row in biased_stars[0]]))
-# plogger.log(unbiased_stars[0])
-
-# with open("res/img/map.csv", "w") as f:
-#     count = 0
-#     for row in biased_stars[random.randint(1, 1000)]:
-#         for item in row:
-#             f.write("{},".format(count))
-#             count += 1
-#         f.write("\n")
-
-
-# def chunker(seq, size):
-#     return (seq[pos : pos + size] for pos in range(0, len(seq), size))
-
-
-# for idx, data in enumerate(chunker(biased_stars, 25)):
-#     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-#     plt.axis("off")
-#     plt.imsave("res/img/biased_stars/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-#     plt.imshow(grid.numpy().transpose(1, 2, 0))
-#     plt.close()
-
-# for idx, data in enumerate(chunker(unbiased_stars, 25)):
-#     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-#     plt.axis("off")
-#     plt.imsave("res/img/unbiased_stars/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-#     plt.imshow(grid.numpy().transpose(1, 2, 0))
-#     plt.close()
-
-# for idx, data in enumerate(chunker(biased_moons, 25)):
-#     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-#     plt.axis("off")
-#     plt.imsave("res/img/biased_moons/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-#     plt.imshow(grid.numpy().transpose(1, 2, 0))
-#     plt.close()
-
-# for idx, data in enumerate(chunker(unbiased_moons, 25)):
-#     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-#     plt.axis("off")
-#     plt.imsave("res/img/unbiased_moons/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-#     plt.imshow(grid.numpy().transpose(1, 2, 0))
-#     plt.close()
 
 unbiased_data = np.concatenate((unbiased_stars, unbiased_moons))
 unbiased_data = torch.from_numpy(np.float32(unbiased_data))
@@ -202,11 +153,7 @@ class Net(nn.Module):
                 if batch_idx % log_interval == 0:
                     logger.log(
                         "Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
-                            epoch + 1,
-                            batch_idx * len(data),
-                            len(train_loader.dataset),
-                            bs * batch_idx / len(train_loader),
-                            loss.item(),
+                            epoch + 1, batch_idx * len(data), len(train_loader.dataset), bs * batch_idx / len(train_loader), loss.item()
                         )
                     )
 
@@ -224,7 +171,7 @@ class Net(nn.Module):
 
 
 net = Net()
-# net.fit(biased_data, labels)
+net.fit(biased_data, labels)
 
 # total = 0.0
 # correct = 0.0
@@ -241,108 +188,57 @@ net = Net()
 # logger.log("Test Acc: " + str(correct / total))
 
 
-X_train = torch.tensor([], dtype=torch.long)
-y_train = torch.tensor([], dtype=torch.long)
-X_test = torch.tensor([], dtype=torch.long)
-y_test = torch.tensor([], dtype=torch.long)
-
-for idx, (data, target) in enumerate(train_loader):
-    X_train = torch.cat((X_train, data.view(-1, 200 * 200)))
-    y_train = torch.cat((y_train, target.squeeze()))
-
-logger.log("X train", X_train.size())
-logger.log("y train", y_train.size())
-
-for idx, (data, target) in enumerate(test_loader):
-    X_test = torch.cat((X_test, data.view(-1, 200 * 200)))
-    y_test = torch.cat((y_test, target.squeeze()))
+# since shuffle=True, this is a random sample of test data
+batch = next(iter(test_loader))
+images, _ = batch
+print("before", images.size())
+images = Variable(images).view(-1, 200 * 200)
+print("before", images.size())
+e = shap.DeepExplainer(net, images)
 
 
-logger.log("X test", X_test.size())
-logger.log("y test", y_test.size())
+batch = next(iter(test_loader))
+test_images, _ = batch
+test_images = Variable(test_images).view(-1, 200 * 200)
+n_test_images = 5
+test_images = images[:n_test_images]
+shap_values = e.shap_values(test_images)
 
-# logger.log("Testing Neural Network")
-# y_pred = net.predict(X_train)
-# logger.log("{}".format(classification_report(y_test, y_pred, digits=3)))
+shap_values = [np.asarray(s).reshape(-1, 200, 200) for s in shap_values]
+test_images = test_images.view(-1, 200, 200)
 
-# logger.log("Using Classification Dagger algorithm to extract DT...")
-# dagger = ClassificationDagger(expert=net)
-# dagger.fit(
-#     X_train,
-#     y_test,
-#     num_iter=100,
-#     max_leaf_nodes=None,
-#     # num_samples=10,
-#     samples_size=0.5,
-#     # ccp_alpha=0.00000001,
-#     verbose=True,
-# )
+shap_numpy = [np.swapaxes(np.swapaxes(s, 1, -1), 1, 2) for s in shap_values]
+test_numpy = np.swapaxes(np.swapaxes(test_images.numpy(), 1, -1), 1, 2)
 
-# logger.log("#" * 10, "Explanation validation", "#" * 10)
-# (dt, reward, idx) = dagger.explain()
 
-# logger.log("Model explanation {} training fidelity: {}".format(idx, reward))
-# dt_y_pred = dt.predict(X_train)
+pprint.pprint(np.asarray(shap_numpy).shape)
+pprint.pprint(test_numpy.shape)
 
-# logger.log("Model explanation test fidelity report:")
-# logger.log(
-#     "\n{}".format(
-#         classification_report(
-#             y_pred,
-#             dt_y_pred,
-#             digits=3,
-#         )
-#     )
-# )
 
-# logger.log("Model explanation classification report:")
-# logger.log(
-#     "\n{}".format(
-#         classification_report(
-#             y_test,
-#             dt_y_pred,
-#             digits=3,
-#         )
-#     )
-# )
+colors = []
+for i in np.linspace(1, 0, 100):
+    colors.append((245 / 255, 39 / 255, 87 / 255, i))
 
-# dot_data = tree.export_graphviz(
-#     dt,
-#     class_names=["star", "moon"],  # sorted(y.unique()),  # [1:] to remove Kali linux instance
-#     # feature_names=X.columns,
-#     filled=True,
-#     rounded=True,
-#     special_characters=True,
-# )
-# graph = graphviz.Source(dot_data)
-# graph.render("res/output/dt_{}_{}_{}".format("PyTorchNet", "dagger", dt.get_n_leaves()))
+for i in np.linspace(0, 1, 100):
+    colors.append((24 / 255, 196 / 255, 93 / 255, i))
 
-# students = dagger.get_students()
-# for (dt, reward, idx) in students:
-#     if reward >= 0.99:
-#         dot_data = tree.export_graphviz(
-#             dt,
-#             class_names=["star", "moon"],  # sorted(y.unique()),  # [1:] to remove Kali linux instance
-#             # feature_names=X.columns,
-#             filled=True,
-#             rounded=True,
-#             special_characters=True,
-#         )
-#         graph = graphviz.Source(dot_data)
-#         graph.render("res/output/trees/dt_{}_{}_{}_{}_{}".format("PyTorchNet", "dagger", dt.get_n_leaves(), reward, idx))
+cm = LinearSegmentedColormap.from_list("shap", colors)
+class_names = ["star", "moon"]
+# plot our explanations
+fig, axes = plt.subplots(nrows=n_test_images, ncols=len(shap_values) + 1, figsize=(12, 4))
+for idx, img in enumerate(test_numpy):
+    axes[idx][0].imshow(img)
+    axes[idx][0].axis("off")
+    max_val = np.max([np.max(np.abs(shap_values[i][:, :-1])) for i in range(len(shap_values))])
+    for i in range(len(shap_values)):
+        if idx == 0:
+            axes[idx][i + 1].set_title(class_names[i])
+        axes[idx][i + 1].imshow(img, alpha=0.15)
+        im = axes[idx][i + 1].imshow(shap_values[i][idx], cmap=cm, vmin=-max_val, vmax=max_val)
+        axes[idx][i + 1].axis("off")
 
-logger.log(
-    trust_report(
-        net,
-        X_train=X_train,
-        X_test=X_test,
-        y_train=y_train,
-        y_test=y_test,
-        max_iter=10,
-        dagger_num_iter=10,
-        output_dir="res/output",
-        class_names=["star", "moon"],
-        logger=logger,
-        verbose=True,
-    )
-)
+cb = fig.colorbar(im, ax=axes.ravel().tolist(), label="SHAP value", orientation="horizontal", aspect=60)
+cb.outline.set_visible(False)
+plt.show()
+
+# shap.image_plot(shap_numpy, test_numpy)
