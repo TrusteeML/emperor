@@ -23,12 +23,14 @@ pip install -r requirements.txt
 
 ##4. Reproduce VIPER results
 ```shell
+mkdir results
 cd viper/python
 python -m viper.pong.main
+cp tmp/dt_output.dot ../../results/viper_dt.dot
+cd ../..
 ```
 
 ##5. Reproduce Emperor results with the same model
 ```shell
-mkdir results
 python emperor_main.py --model viper/data/model-atari-pong-1/saved --output_dir results
 ```
