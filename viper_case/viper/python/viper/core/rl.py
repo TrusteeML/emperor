@@ -14,6 +14,7 @@
 
 import numpy as np
 from ..util.log import *
+from tqdm import tqdm
 
 def get_rollout(env, policy, render):
     obs, done = np.array(env.reset()), False
@@ -40,7 +41,7 @@ def get_rollout(env, policy, render):
 
 def get_rollouts(env, policy, render, n_batch_rollouts):
     rollouts = []
-    for i in range(n_batch_rollouts):
+    for i in tqdm(range(n_batch_rollouts)):
         rollouts.extend(get_rollout(env, policy, render))
     return rollouts
 
