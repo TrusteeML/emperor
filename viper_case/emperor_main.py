@@ -13,7 +13,7 @@ from skexplain.utils import log
 from skexplain.imitation import Dagger
 
 
-N_ROLLOUTS = 15  # 80 * (10+1)    # the same amount of total rollouts as viper: n_batch_rollouts * (max_iters + 1 (initial))
+N_ROLLOUTS = 150  # 80 * (10+1)    # the same amount of total rollouts as viper: n_batch_rollouts * (max_iters + 1 (initial))
 
 
 class CustomDecisionTreeClassifier(tree.DecisionTreeClassifier):
@@ -75,15 +75,26 @@ def main():
     dagger.fit(
         Xs,
         ys,
-        samples_size=0.5,
-        num_iter=100,
+        num_samples=200000,
+        num_iter=40,
         verbose=True
     )
 
     logger.log("#" * 10, "Explanation validation", "#" * 10)
     (dt, reward, idx) = dagger.explain()
-
     logger.log("Model explanation {} local fidelity: {}".format(idx, reward))
+
+
+    # generate new data for report
+    obss = []
+    acts = []
+    trace = get_rollouts(env, teacher, False, N_ROLLOUTS)
+    obss.extend((obs for obs, _, _ in trace))
+    acts.extend((act for _, act, _ in trace))
+
+    Xs = np.array(obss)
+    ys = np.array(acts)
+
     dt_y_pred = dt.predict(Xs)
 
     logger.log("Model explanation global fidelity report:")
