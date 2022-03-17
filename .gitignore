@@ -150,3 +150,4 @@ nprint_case/res/dataset/os-fingerprint/pcaps-100k/*
 *.pdf
 dt_*
 *.npt
+*.m4s

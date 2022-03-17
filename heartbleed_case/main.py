@@ -1,4 +1,3 @@
-from tabnanny import verbose
 import numpy as np
 
 from skexplain.report import trust_report
@@ -153,7 +152,7 @@ def main():
             max_iter=10,
             dagger_num_iter=10,
             skip_retrain=True,
-            dagger_sample_size=0.01,
+            dagger_sample_size=0.001,
             # dagger_ccp_alpha=dagger_ccp_alpha,
             output_dir=OUTPUT_PATH,
             feature_names=feature_names,

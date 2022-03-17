@@ -4,7 +4,6 @@ import csv
 # import time
 import pyshark
 
-# import nest_asyncio
 
 from os import listdir
 from os.path import isfile, join
@@ -47,7 +46,11 @@ def process_pcap(pcap_file):
 if __name__ == "__main__":
     print("Reading ip_addresses from pcaps...")
     eta = len(listdir(PCAPS_FOLDER)) * 0.30
-    print("Proceesing {} pcaps (eta: {} minutes)...".format(len(listdir(PCAPS_FOLDER)), eta / 60 / POOL_SIZE))
+    print(
+        "Proceesing {} pcaps (eta: {} minutes)...".format(
+            len(listdir(PCAPS_FOLDER)), eta / 60 / POOL_SIZE
+        )
+    )
 
     ip_addresses = []
     with Pool(POOL_SIZE) as pool:
@@ -65,6 +68,9 @@ if __name__ == "__main__":
                     label_src_address = row[0]
                     label = row[1]
 
-                    if src_address == label_src_address or dst_address == label_src_address:
+                    if (
+                        src_address == label_src_address
+                        or dst_address == label_src_address
+                    ):
                         # print([pcap_file, label])
                         labels_writer.writerow([pcap_file, label])
