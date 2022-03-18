@@ -11,9 +11,9 @@ apt install graphviz libopencv-dev python3-opencv
 
 ##2. Install VIPER requirements
 Disclaimer: the original repo has not provided exact packages versions or requirements file.
-We reproduced the environment according to our understanding and knowledge.
+We reproduced the environment according to our understanding and knowledge. We used `poetry` for dependencies tracking.
 ```shell
-pip install -r requirements.txt
+poetry init
 ```
 
 ##3. Install scikit-explain
