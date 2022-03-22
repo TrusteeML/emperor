@@ -153,7 +153,11 @@ class Net(nn.Module):
                 if batch_idx % log_interval == 0:
                     logger.log(
                         "Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
-                            epoch + 1, batch_idx * len(data), len(train_loader.dataset), bs * batch_idx / len(train_loader), loss.item()
+                            epoch + 1,
+                            batch_idx * len(data),
+                            len(train_loader.dataset),
+                            bs * batch_idx / len(train_loader),
+                            loss.item(),
                         )
                     )
 
@@ -225,19 +229,31 @@ for i in np.linspace(0, 1, 100):
 cm = LinearSegmentedColormap.from_list("shap", colors)
 class_names = ["star", "moon"]
 # plot our explanations
-fig, axes = plt.subplots(nrows=n_test_images, ncols=len(shap_values) + 1, figsize=(12, 4))
+fig, axes = plt.subplots(
+    nrows=n_test_images, ncols=len(shap_values) + 1, figsize=(12, 4)
+)
 for idx, img in enumerate(test_numpy):
     axes[idx][0].imshow(img)
     axes[idx][0].axis("off")
-    max_val = np.max([np.max(np.abs(shap_values[i][:, :-1])) for i in range(len(shap_values))])
+    max_val = np.max(
+        [np.max(np.abs(shap_values[i][:, :-1])) for i in range(len(shap_values))]
+    )
     for i in range(len(shap_values)):
         if idx == 0:
             axes[idx][i + 1].set_title(class_names[i])
         axes[idx][i + 1].imshow(img, alpha=0.15)
-        im = axes[idx][i + 1].imshow(shap_values[i][idx], cmap=cm, vmin=-max_val, vmax=max_val)
+        im = axes[idx][i + 1].imshow(
+            shap_values[i][idx], cmap=cm, vmin=-max_val, vmax=max_val
+        )
         axes[idx][i + 1].axis("off")
 
-cb = fig.colorbar(im, ax=axes.ravel().tolist(), label="SHAP value", orientation="horizontal", aspect=60)
+cb = fig.colorbar(
+    im,
+    ax=axes.ravel().tolist(),
+    label="SHAP value",
+    orientation="horizontal",
+    aspect=60,
+)
 cb.outline.set_visible(False)
 plt.show()
 

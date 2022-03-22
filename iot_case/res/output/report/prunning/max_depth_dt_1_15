@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label=<TCP Src Port &le; 38301.0<br/>gini = 0.503<br/>samples = 232032<br/>value = [18051, 1885, 7866, 49659, 154571]<br/>class = Other>, fillcolor="#f08ddb"] ;
+1 [label=<UDP Src Port &le; 33801.5<br/>gini = 0.341<br/>samples = 163157<br/>value = [11930, 1855, 4553, 13693, 131126]<br/>class = Other>, fillcolor="#eb63ce"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label=<TCP Src Port &le; 3067.5<br/>gini = 0.226<br/>samples = 144842<br/>value = [11930, 1855, 2135, 2135, 126787]<br/>class = Other>, fillcolor="#e954c9"] ;
+1 -> 2 ;
+3 [label=<gini = 0.119<br/>samples = 125046<br/>value = [2866, 1585, 1537, 1740, 117318]<br/>class = Other>, fillcolor="#e746c4"] ;
+2 -> 3 ;
+4 [label=<gini = 0.56<br/>samples = 19796<br/>value = [9064, 270, 598, 395, 9469]<br/>class = Other>, fillcolor="#fef8fd"] ;
+2 -> 4 ;
+5 [label=<IPv4 Flags_0 &le; 0.5<br/>gini = 0.528<br/>samples = 18315<br/>value = [0, 0, 2418, 11558, 4339]<br/>class = Video>, fillcolor="#9a99f2"] ;
+1 -> 5 ;
+6 [label=<gini = 0.35<br/>samples = 14667<br/>value = [0, 0, 2418, 11558, 691]<br/>class = Video>, fillcolor="#6d6bec"] ;
+5 -> 6 ;
+7 [label=<gini = 0.0<br/>samples = 3648<br/>value = [0, 0, 0, 0, 3648]<br/>class = Other>, fillcolor="#e539c0"] ;
+5 -> 7 ;
+8 [label=<TCP Src Port &le; 49152.5<br/>gini = 0.601<br/>samples = 68875<br/>value = [6121, 30, 3313, 35966, 23445]<br/>class = Video>, fillcolor="#c9c8f8"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label=<TCP Src Port &le; 46198.0<br/>gini = 0.167<br/>samples = 35744<br/>value = [0, 0, 1197, 32538, 2009]<br/>class = Video>, fillcolor="#4f4ce7"] ;
+8 -> 9 ;
+10 [label=<gini = 0.659<br/>samples = 3599<br/>value = [0, 0, 947, 1268, 1384]<br/>class = Other>, fillcolor="#fef5fc"] ;
+9 -> 10 ;
+11 [label=<gini = 0.053<br/>samples = 32145<br/>value = [0, 0, 250, 31270, 625]<br/>class = Video>, fillcolor="#413ee6"] ;
+9 -> 11 ;
+12 [label=<TCP Src Port &le; 49179.0<br/>gini = 0.532<br/>samples = 33131<br/>value = [6121, 30, 2116, 3428, 21436]<br/>class = Other>, fillcolor="#f08fdb"] ;
+8 -> 12 ;
+13 [label=<gini = 0.013<br/>samples = 6162<br/>value = [6121, 0, 0, 0, 41]<br/>class = Smart Static>, fillcolor="#e5823a"] ;
+12 -> 13 ;
+14 [label=<gini = 0.348<br/>samples = 26969<br/>value = [0, 30, 2116, 3428, 21395]<br/>class = Other>, fillcolor="#eb68cf"] ;
+12 -> 14 ;
+}
