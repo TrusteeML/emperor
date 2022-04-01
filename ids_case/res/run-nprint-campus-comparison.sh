@@ -9,5 +9,5 @@ nprintml \
   --label-file nprint_dataset/labels.txt \
   --save-nprint \
   --pcap-dir nprint_dataset/npts \
-  --output output_full_model \
+  --output nprint_dataset/full_model \
   --verbose

@@ -10,4 +10,4 @@ confusion matrix, and visualize the tree
    1. Ensure that nprint_dataset is downloaded and prepared (see `res/nprint_dataset/README.md`)
    2. Ensure that campus_dataset is prepared (see `res/campus_dataset/README.md`)
    3. Run `res/run-nprint-campus-comparison.sh`
-   4. Run `./campus-comparison.py`
+   4. Run `./campus-results.py`

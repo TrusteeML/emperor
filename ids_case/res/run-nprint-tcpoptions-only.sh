@@ -9,5 +9,5 @@ nprintml \
   --label-file nprint_dataset/labels.txt \
   --save-nprint \
   --pcap-dir nprint_dataset/npts \
-  --output nprint_dataset/output \
+  --output nprint_dataset/tcpoptions_only_model \
   --verbose
