@@ -6,8 +6,8 @@ nprintml \
   --count 5 \
   --nprint-filter "ipv4_src_[0-9]+|ipv4_dst_[0-9]+" \
   --compress \
-  --label-file labels.txt \
+  --label-file nprint_dataset/labels.txt \
   --save-nprint \
-  --pcap-dir pcaps/ \
-  --output nprintml \
+  --pcap-dir nprint_dataset/npts \
+  --output output_full_model \
   --verbose
