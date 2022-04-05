@@ -16,10 +16,10 @@ from nprintml.label.aggregator import registry as aggregators
 # We want to fit the dagger and visualize the resulting decision tree of our full dataset using the model trained on tcp options only
 # therefore the labels and nprint path should point to full dataset and model path should point to tcpoptions_only model
 AGGREGATOR = "pcap"
-LABELS_PATH = "res/nprint_dataset/labels.txt"
-NPRINT_PATH = "res/nprint_dataset/npts"
-MODELS_DIR = "res/nprint_dataset/tcpoptions_only_model"
-OUTPUT_DIR = "results/full_model"
+LABELS_PATH = "res/nprint_dataset/labels.txt"   # labels file
+NPRINT_PATH = "res/nprint_dataset/tcpoptions_only_model/nprint"  # *.npt folder, result of pcap->npt parsing (usually nprint folder of output dir of nprintml)
+MODELS_DIR = "res/nprint_dataset/tcpoptions_only_model/model"  # model folder, usually 'model' folder of output_dir of nprintml
+OUTPUT_DIR = "results/tcpoptions_only_model"
 
 
 def main():
