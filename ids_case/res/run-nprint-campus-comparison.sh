@@ -1,0 +1,13 @@
+nprintml \
+  --concurrency 1 \
+  --tcp \
+  --ipv4 \
+  --aggregator pcap \
+  --count 5 \
+  --nprint-filter "ipv4_src_[0-9]+|ipv4_dst_[0-9]+" \
+  --compress \
+  --label-file nprint_dataset/labels.txt \
+  --save-nprint \
+  --pcap-dir nprint_dataset/npts \
+  --output nprint_dataset/full_model \
+  --verbose

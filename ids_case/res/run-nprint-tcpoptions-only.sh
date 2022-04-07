@@ -1,0 +1,13 @@
+nprintml \
+  --concurrency 1 \
+  --tcp \
+  --ipv4 \
+  --aggregator pcap \
+  --count 5 \
+  --nprint-filter "ipv4_ver_[0-9]+|ipv4_hl_[0-9]+|ipv4_tos_[0-9]+|ipv4_tl_[0-9]+|ipv4_id_[0-9]+|ipv4_rbit_[0-9]+|ipv4_dfbit_[0-9]+|ipv4_mfbit_[0-9]+|ipv4_foff_[0-9]+|ipv4_ttl_[0-9]+|ipv4_proto_[0-9]+|ipv4_cksum_[0-9]+|ipv4_src_[0-9]+|ipv4_dst_[0-9]+|ipv4_opt_[0-9]+|_[0-9]+|tcp_sprt_[0-9]+|tcp_dprt_[0-9]+|tcp_seq_[0-9]+|tcp_ackn_[0-9]+|tcp_doff_[0-9]+|tcp_res_[0-9]+|tcp_ns_[0-9]+|tcp_cwr_[0-9]+|tcp_ece_[0-9]+|tcp_urg_[0-9]+|tcp_ackf_[0-9]+|tcp_psh_[0-9]+|tcp_rst_[0-9]+|tcp_syn_[0-9]+|tcp_wsize_[0-9]+|tcp_cksum_[0-9]+|tcp_urp_[0-9]+" \
+  --compress \
+  --label-file nprint_dataset/labels.txt \
+  --save-nprint \
+  --pcap-dir nprint_dataset/npts \
+  --output nprint_dataset/tcpoptions_only_model \
+  --verbose
