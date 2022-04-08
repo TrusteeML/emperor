@@ -1643,7 +1643,6 @@ filename,label
 2996722.pcap,malware_port-scan
 299951.pcap,benign_benign
 300012.pcap,malware_port-scan
-300542.pcap,benign_benign
 3007.pcap,benign_benign
 3008163.pcap,malware_ddos
 300966.pcap,benign_benign
@@ -1813,7 +1812,6 @@ filename,label
 340861.pcap,benign_benign
 34089.pcap,malware_ddos
 3412086.pcap,malware_port-scan
-341736.pcap,benign_benign
 341793.pcap,benign_benign
 342100.pcap,benign_benign
 342526.pcap,benign_benign
@@ -1893,7 +1891,6 @@ filename,label
 36036.pcap,benign_benign
 3606869.pcap,malware_port-scan
 36100.pcap,benign_benign
-361064.pcap,benign_benign
 361607.pcap,malware_ddos
 362040.pcap,benign_benign
 362096.pcap,malware_port-scan
