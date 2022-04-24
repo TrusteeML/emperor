@@ -41,7 +41,7 @@ def main():
     logger.log("\n{}".format(classification_report(y, y_pred, digits=3)))
 
     logger.log("Full confusion matrix: ")
-    logger.log(confusion_matrix(y, y_pred, labels=sorted(y_pred.unique()))
+    logger.log(confusion_matrix(y, y_pred, labels=sorted(y_pred.unique())))
 
     # Decision tree extraction
     logger.log("Using Classification Dagger algorithm to extract DT...")
