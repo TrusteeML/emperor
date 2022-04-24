@@ -15,7 +15,7 @@ from nprintml.label.aggregator import registry as aggregators
 AGGREGATOR = "pcap"
 LABELS_PATH = "res/campus_dataset/labels.txt"
 NPRINT_PATH = "res/campus_dataset/npts"
-MODELS_DIR = "res/nprint_dataset/full_model"
+MODELS_DIR = "res/nprint_dataset/full_model/model"
 OUTPUT_DIR = "results/full_model"
 
 
@@ -41,13 +41,13 @@ def main():
     logger.log("\n{}".format(classification_report(y, y_pred, digits=3)))
 
     logger.log("Full confusion matrix: ")
-    logger.log(confusion_matrix(y, y_pred, labels=sorted(y.unique())))
+    logger.log(confusion_matrix(y, y_pred, labels=sorted(y_pred.unique()))
 
     # Decision tree extraction
     logger.log("Using Classification Dagger algorithm to extract DT...")
     dagger = ClassificationDagger(expert=blackbox)
 
-    dagger.fit(X, y, num_iter=100, verbose=True)
+    dagger.fit(X, y, num_iter=40, samples_size=1.0, verbose=True)
 
     logger.log("#" * 10, "Explanation validation", "#" * 10)
     (dt, reward, idx) = dagger.explain()
@@ -79,7 +79,7 @@ def main():
 
     dot_data = tree.export_graphviz(
         dt,
-        class_names=sorted(y.unique()),
+        class_names=sorted(dt_y_pred.unique()),
         feature_names=X.columns,
         filled=True,
         rounded=True,

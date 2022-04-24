@@ -1,5 +1,5 @@
 nprintml \
-  --concurrency 1 \
+  --concurrency 30 \
   --tcp \
   --ipv4 \
   --aggregator pcap \
@@ -10,4 +10,6 @@ nprintml \
   --save-nprint \
   --pcap-dir nprint_dataset/npts \
   --output nprint_dataset/full_model \
-  --verbose
+  --verbose \
+  --quality 2 \
+  --limit 30000
