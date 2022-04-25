@@ -1,4 +1,5 @@
 import graphviz
+import pickle
 
 from sklearn import tree
 from sklearn.metrics import classification_report, confusion_matrix
@@ -23,6 +24,7 @@ def main():
     logger = log.Logger("{}/output.log".format(OUTPUT_DIR))
     logger.log("Reading nPrint dataset...")
 
+    labels = list(sorted(["benign_benign", "malware_ddos", "malware_dos", "malware_ftp-patator", "malware_infiltration", "malware_port-scan", "malware_ssh-patator", "malware_web-attack"]))
     aggr = aggregators[AGGREGATOR](LABELS_PATH)
     df = aggr(NPRINT_PATH)
 
@@ -41,7 +43,7 @@ def main():
     logger.log("\n{}".format(classification_report(y, y_pred, digits=3)))
 
     logger.log("Full confusion matrix: ")
-    logger.log(confusion_matrix(y, y_pred, labels=sorted(y_pred.unique())))
+    logger.log(confusion_matrix(y, y_pred, labels=labels))
 
     # Decision tree extraction
     logger.log("Using Classification Dagger algorithm to extract DT...")
@@ -77,9 +79,12 @@ def main():
         )
     )
 
+    with open(f"{OUTPUT_DIR}/dt.pkl", "wb") as f:
+        pickle.dump(dt, f)
+
     dot_data = tree.export_graphviz(
         dt,
-        class_names=sorted(y_pred.unique()),
+        class_names=labels,
         feature_names=X.columns,
         filled=True,
         rounded=True,
