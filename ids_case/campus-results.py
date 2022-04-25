@@ -49,7 +49,7 @@ def main():
     logger.log("Using Classification Dagger algorithm to extract DT...")
     dagger = ClassificationDagger(expert=blackbox)
 
-    dagger.fit(X, y, num_iter=40, samples_size=1.0, verbose=True)
+    dagger.fit(X, y, num_iter=20, samples_size=1.0, verbose=True)
 
     logger.log("#" * 10, "Explanation validation", "#" * 10)
     (dt, reward, idx) = dagger.explain()
@@ -84,7 +84,7 @@ def main():
 
     dot_data = tree.export_graphviz(
         dt,
-        class_names=labels,
+        class_names=sorted(set(dt_y_pred)),
         feature_names=X.columns,
         filled=True,
         rounded=True,
