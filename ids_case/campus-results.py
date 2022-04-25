@@ -79,7 +79,7 @@ def main():
 
     dot_data = tree.export_graphviz(
         dt,
-        class_names=sorted(dt_y_pred.unique()),
+        class_names=sorted(y_pred.unique()),
         feature_names=X.columns,
         filled=True,
         rounded=True,
