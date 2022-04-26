@@ -1,9 +1,9 @@
 digraph Tree {
 node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
 edge [fontname=helvetica] ;
-0 [label=<TCP Src Port &le; 38301.0<br/>gini = 0.505<br/>samples = 232032<br/>value = [18338, 1918, 7767, 49758, 154251]<br/>class = Other>, fillcolor="#f08ddb"] ;
-1 [label=<gini = 0.342<br/>samples = 163371<br/>value = [12076, 1885, 4474, 13809, 131127]<br/>class = Other>, fillcolor="#eb64ce"] ;
+0 [label=<TCP Src Port &le; 38241.0<br/>gini = 0.504<br/>samples = 232032<br/>value = [18221, 1863, 7860, 49764, 154324]<br/>class = Other>, fillcolor="#f08ddb"] ;
+1 [label=<gini = 0.341<br/>samples = 163165<br/>value = [11971, 1847, 4513, 13712, 131122]<br/>class = Other>, fillcolor="#eb63ce"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-2 [label=<gini = 0.602<br/>samples = 68661<br/>value = [6262, 33, 3293, 35949, 23124]<br/>class = Video>, fillcolor="#c8c7f8"] ;
+2 [label=<gini = 0.602<br/>samples = 68867<br/>value = [6250, 16, 3347, 36052, 23202]<br/>class = Video>, fillcolor="#c8c7f8"] ;
 0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
 }

@@ -10,7 +10,7 @@ from viper.python.viper.pong.pong import get_pong_symbolic, get_pong_env
 from viper.python.viper.core.rl import get_rollouts, test_policy
 
 from skexplain.utils import log
-from skexplain.imitation import Dagger
+from skexplain.imitation import Trustee
 
 
 N_ROLLOUTS = 150  # 80 * (10+1)    # the same amount of total rollouts as viper: n_batch_rollouts * (max_iters + 1 (initial))
@@ -18,9 +18,10 @@ N_ROLLOUTS = 150  # 80 * (10+1)    # the same amount of total rollouts as viper:
 
 class CustomDecisionTreeClassifier(tree.DecisionTreeClassifier):
     """
-    Since original VIPER uses different X form for teacher and student in order to work with unified Dagger we will
+    Since original VIPER uses different X form for teacher and student in order to work with unified Trustee we will
     introduce custom classifier which preprocesses the data for every predict and fit call
     """
+
     def __init__(self, *args, **kwargs):
         self.input_transformer = get_pong_symbolic
         super().__init__(*args, **kwargs)
@@ -31,14 +32,25 @@ class CustomDecisionTreeClassifier(tree.DecisionTreeClassifier):
     def predict(self, X, check_input=True):
         return super().predict(self._apply_transformer(X), check_input)
 
-    def fit(self, X, y, sample_weight=None, check_input=True, X_idx_sorted="deprecated"):
-        return super().fit(self._apply_transformer(X), y, sample_weight, check_input, X_idx_sorted)
+    def fit(
+        self, X, y, sample_weight=None, check_input=True, X_idx_sorted="deprecated"
+    ):
+        return super().fit(
+            self._apply_transformer(X), y, sample_weight, check_input, X_idx_sorted
+        )
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="viper/data/model-atari-pong-1/saved", help="VIPER model checkpoint folder")
-    parser.add_argument("--output_dir", type=str, default="results", help="Output folder for results")
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="viper/data/model-atari-pong-1/saved",
+        help="VIPER model checkpoint folder",
+    )
+    parser.add_argument(
+        "--output_dir", type=str, default="results", help="Output folder for results"
+    )
     args = parser.parse_args()
     MODEL_PATH = args.model
     OUTPUT_DIR = args.output_dir
@@ -66,24 +78,21 @@ def main():
     logger.log(f"X size: {len(Xs)}; y size: {len(ys)}")
     logger.log("Done!")
 
-    logger.log("Using Classification Dagger algorithm to extract DT...")
+    logger.log("Using Classification Trustee algorithm to extract DT...")
 
-    # Again, here we construct Dagger manually only because different state representations are used for teacher and student models
-    dagger = Dagger(expert=teacher, student_class=CustomDecisionTreeClassifier, logger=logger)
-    dagger.score = lambda y_true, y_pred, average="macro": f1_score(y_true, y_pred, average=average)
-
-    dagger.fit(
-        Xs,
-        ys,
-        num_samples=200000,
-        num_iter=40,
-        verbose=True
+    # Again, here we construct Trustee manually only because different state representations are used for teacher and student models
+    trustee = Trustee(
+        expert=teacher, student_class=CustomDecisionTreeClassifier, logger=logger
+    )
+    trustee.score = lambda y_true, y_pred, average="macro": f1_score(
+        y_true, y_pred, average=average
     )
 
-    logger.log("#" * 10, "Explanation validation", "#" * 10)
-    (dt, reward, idx) = dagger.explain()
-    logger.log("Model explanation {} local fidelity: {}".format(idx, reward))
+    trustee.fit(Xs, ys, num_samples=200000, num_iter=40, verbose=True)
 
+    logger.log("#" * 10, "Explanation validation", "#" * 10)
+    (dt, reward, idx) = trustee.explain()
+    logger.log("Model explanation {} local fidelity: {}".format(idx, reward))
 
     # generate new data for report
     obss = []
@@ -116,11 +125,17 @@ def main():
     logger.log(f"Average reward: {rew}")
 
     logger.log(f"Exporting tree visualization to {OUTPUT_DIR}...")
-    dot_data = tree.export_graphviz(dt, filled=True, rounded=True, special_characters=True)
+    dot_data = tree.export_graphviz(
+        dt, filled=True, rounded=True, special_characters=True
+    )
     graph = graphviz.Source(dot_data)
-    graph.render("{}/dt_{}_{}_{}".format(OUTPUT_DIR, "TabularPredictor", "dagger", dt.get_n_leaves()))
+    graph.render(
+        "{}/dt_{}_{}_{}".format(
+            OUTPUT_DIR, "TabularPredictor", "trustee", dt.get_n_leaves()
+        )
+    )
     logger.log("Done!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

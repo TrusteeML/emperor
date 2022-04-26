@@ -1,16 +1,16 @@
 digraph Tree {
 node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
 edge [fontname=helvetica] ;
-0 [label=<X<SUB>49</SUB> &le; 0.069<br/>gini = 0.432<br/>samples = 10675<br/>value = [7306, 3369]<br/>class = Novpn>, fillcolor="#f1bb94"] ;
-1 [label=<X<SUB>43</SUB> &le; 0.006<br/>gini = 0.004<br/>samples = 3365<br/>value = [7, 3358]<br/>class = Vpn>, fillcolor="#399de5"] ;
+0 [label=<X<SUB>49</SUB> &le; 0.069<br/>gini = 0.429<br/>samples = 10675<br/>value = [7346, 3329]<br/>class = Novpn>, fillcolor="#f1ba93"] ;
+1 [label=<X<SUB>43</SUB> &le; 0.006<br/>gini = 0.004<br/>samples = 3325<br/>value = [7, 3318]<br/>class = Vpn>, fillcolor="#399de5"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
 2 [label=<gini = 0.0<br/>samples = 7<br/>value = [7, 0]<br/>class = Novpn>, fillcolor="#e58139"] ;
 1 -> 2 ;
-3 [label=<gini = 0.0<br/>samples = 3358<br/>value = [0, 3358]<br/>class = Vpn>, fillcolor="#399de5"] ;
+3 [label=<gini = 0.0<br/>samples = 3318<br/>value = [0, 3318]<br/>class = Vpn>, fillcolor="#399de5"] ;
 1 -> 3 ;
-4 [label=<X<SUB>47</SUB> &le; 0.988<br/>gini = 0.003<br/>samples = 7310<br/>value = [7299, 11]<br/>class = Novpn>, fillcolor="#e58139"] ;
+4 [label=<X<SUB>47</SUB> &le; 0.988<br/>gini = 0.003<br/>samples = 7350<br/>value = [7339, 11]<br/>class = Novpn>, fillcolor="#e58139"] ;
 0 -> 4 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-5 [label=<gini = 0.0<br/>samples = 7299<br/>value = [7299, 0]<br/>class = Novpn>, fillcolor="#e58139"] ;
+5 [label=<gini = 0.0<br/>samples = 7339<br/>value = [7339, 0]<br/>class = Novpn>, fillcolor="#e58139"] ;
 4 -> 5 ;
 6 [label=<gini = 0.0<br/>samples = 11<br/>value = [0, 11]<br/>class = Vpn>, fillcolor="#399de5"] ;
 4 -> 6 ;

@@ -22,20 +22,13 @@ def get_reward(bit_rate, rebuf, last_bit_rate, parameters, reward_type):
             parameters["VIDEO_BIT_RATE"][bit_rate] / parameters["M_IN_K"]
             - parameters["REBUF_PENALTY"] * rebuf
             - parameters["SMOOTH_PENALTY"]
-            * np.abs(
-                parameters["VIDEO_BIT_RATE"][bit_rate]
-                - parameters["VIDEO_BIT_RATE"][last_bit_rate]
-            )
+            * np.abs(parameters["VIDEO_BIT_RATE"][bit_rate] - parameters["VIDEO_BIT_RATE"][last_bit_rate])
             / parameters["M_IN_K"]
         )
     elif reward_type == "LOG":
-        log_bit_rate = np.log(
-            parameters["VIDEO_BIT_RATE"][bit_rate]
-            / float(parameters["VIDEO_BIT_RATE"][-1])
-        )
+        log_bit_rate = np.log(parameters["VIDEO_BIT_RATE"][bit_rate] / float(parameters["VIDEO_BIT_RATE"][-1]))
         log_last_bit_rate = np.log(
-            parameters["VIDEO_BIT_RATE"][last_bit_rate]
-            / float(parameters["VIDEO_BIT_RATE"][-1])
+            parameters["VIDEO_BIT_RATE"][last_bit_rate] / float(parameters["VIDEO_BIT_RATE"][-1])
         )
         reward = (
             log_bit_rate
@@ -47,10 +40,7 @@ def get_reward(bit_rate, rebuf, last_bit_rate, parameters, reward_type):
             parameters["HD_REWARD"][bit_rate]
             - parameters["REBUF_PENALTY"] * rebuf
             - parameters["SMOOTH_PENALTY"]
-            * np.abs(
-                parameters["HD_REWARD"][bit_rate]
-                - parameters["HD_REWARD"][last_bit_rate]
-            )
+            * np.abs(parameters["HD_REWARD"][bit_rate] - parameters["HD_REWARD"][last_bit_rate])
         )
     else:
         reward = None
@@ -100,24 +90,16 @@ def get_rollout(env, policy, parameters, is_student=True):
         state = np.roll(state, -1, axis=1)
 
         # this should be S_INFO number of terms
-        state[0, -1] = parameters["VIDEO_BIT_RATE"][bit_rate] / float(
-            np.max(parameters["VIDEO_BIT_RATE"])
-        )  # last QoE
+        state[0, -1] = parameters["VIDEO_BIT_RATE"][bit_rate] / float(np.max(parameters["VIDEO_BIT_RATE"]))  # last QoE
         state[1, -1] = buffer_size / parameters["BUFFER_NORM_FACTOR"]  # 10 sec
-        state[2, -1] = (
-            float(video_chunk_size) / float(delay) / parameters["M_IN_K"]
-        )  # kilo byte / ms
-        state[3, -1] = (
-            float(delay) / parameters["M_IN_K"] / parameters["BUFFER_NORM_FACTOR"]
-        )  # 10 sec
+        state[2, -1] = float(video_chunk_size) / float(delay) / parameters["M_IN_K"]  # kilo byte / ms
+        state[3, -1] = float(delay) / parameters["M_IN_K"] / parameters["BUFFER_NORM_FACTOR"]  # 10 sec
         state[4, : parameters["A_DIM"]] = (
-            np.array(next_video_chunk_sizes)
-            / parameters["M_IN_K"]
-            / parameters["M_IN_K"]
+            np.array(next_video_chunk_sizes) / parameters["M_IN_K"] / parameters["M_IN_K"]
         )  # MB
-        state[5, -1] = np.minimum(
-            video_chunk_remain, parameters["CHUNK_TIL_VIDEO_END_CAP"]
-        ) / float(parameters["CHUNK_TIL_VIDEO_END_CAP"])
+        state[5, -1] = np.minimum(video_chunk_remain, parameters["CHUNK_TIL_VIDEO_END_CAP"]) / float(
+            parameters["CHUNK_TIL_VIDEO_END_CAP"]
+        )
 
         serilized_state = []
         serilized_state.append(state[0, -1])
@@ -133,14 +115,10 @@ def get_rollout(env, policy, parameters, is_student=True):
         if is_student:
             bit_rate = policy.predict(np.array(serilized_state).reshape(1, -1))[0]
         else:
-            action_prob = policy.predict(
-                np.reshape(state, (1, parameters["S_INFO"], parameters["S_LEN"]))
-            )
+            action_prob = policy.predict(np.reshape(state, (1, parameters["S_INFO"], parameters["S_LEN"])))
             action_cumsum = np.cumsum(action_prob)
             bit_rate = (
-                action_cumsum
-                > np.random.randint(1, parameters["RAND_RANGE"])
-                / float(parameters["RAND_RANGE"])
+                action_cumsum > np.random.randint(1, parameters["RAND_RANGE"]) / float(parameters["RAND_RANGE"])
             ).argmax()
         # Note: we need to discretize the probability into 1/RAND_RANGE steps,
         # because there is an intrinsic discrepancy in passing single state and batch states
@@ -199,9 +177,7 @@ def _sample(obss, acts, qs, copies, max_pts, is_reweight):
         idx = np.random.choice(len(obss), size=min(max_pts, np.sum(ps > 0)), p=ps)
     else:
         # Uniformly (without replacement)
-        idx = np.random.choice(
-            len(obss), size=max_pts
-        )  # min(max_pts, np.sum(ps > 0)), replace=False)
+        idx = np.random.choice(len(obss), size=max_pts)  # min(max_pts, np.sum(ps > 0)), replace=False)
 
     # Step 3: Obtain sampled indices
     return obss[idx], acts[idx], qs[idx], copies[idx]
@@ -213,9 +189,7 @@ class TransformerPolicy:
         self.state_transformer = state_transformer
 
     def predict(self, obss):
-        return self.policy.predict(
-            np.array([self.state_transformer(obs) for obs in obss])
-        )
+        return self.policy.predict(np.array([self.state_transformer(obs) for obs in obss]))
 
 
 def test_policy(env, policy, n_test_rollouts, parameters):
@@ -318,7 +292,7 @@ def train_dagger(
     copies = []
     copies.extend((copy for _, _, _, _, copy in trace))
 
-    # Step 2: Dagger outer loop
+    # Step 2: Trustee outer loop
     for i in range(max_iters):
         log("Iteration {}/{}".format(i, max_iters), INFO)
 
@@ -337,9 +311,7 @@ def train_dagger(
         # cur_qs = np.array(qs)
         # cur_copies = np.array(copies)
         log("Training student with {} points".format(len(cur_serialized_obss)), INFO)
-        student.train(
-            cur_serialized_obss, cur_acts, train_frac, cur_copies, feature_names, env
-        )
+        student.train(cur_serialized_obss, cur_acts, train_frac, cur_copies, feature_names, env)
 
         # Step 2b: Generate trace using student
         student_trace = get_rollouts(
@@ -349,9 +321,7 @@ def train_dagger(
             parameters=parameters,
         )
         student_obss = [obs for obs, _, _, _, _ in student_trace]
-        student_serialized_obss = [
-            serialized_obss for _, _, _, serialized_obss, _ in student_trace
-        ]
+        student_serialized_obss = [serialized_obss for _, _, _, serialized_obss, _ in student_trace]
         student_copies = [copy for _, _, _, _, copy in student_trace]
 
         print(
@@ -373,9 +343,7 @@ def train_dagger(
             action_cumsum = np.cumsum(action_prob)
             teacher_acts.append(
                 (
-                    action_cumsum
-                    > np.random.randint(1, parameters["RAND_RANGE"])
-                    / float(parameters["RAND_RANGE"])
+                    action_cumsum > np.random.randint(1, parameters["RAND_RANGE"]) / float(parameters["RAND_RANGE"])
                 ).argmax()
             )
 

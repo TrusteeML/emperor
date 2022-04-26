@@ -32,7 +32,7 @@ from rl import *
 from sklearn import tree
 from sklearn.metrics import f1_score, classification_report
 
-from skexplain.imitation import ClassificationDagger
+from skexplain.imitation import ClassificationTrustee
 from skexplain.report import trust_report
 from sklearn.model_selection import train_test_split
 
@@ -227,23 +227,12 @@ def main(leaf_nodes):
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    feature_names=feature_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render("{}/dt_{}_{}_{}".format(output_dir, "strawman", dt.tree_.node_count, i))
-
                 #######################################
                 ######### NODAGGER + ACCURACY #########
                 #######################################
 
-                log("Using Classification Dagger algorithm to extract DT...", INFO)
-                dagger = ClassificationDagger(expert=teacher)
+                log("Using Classification Trustee algorithm to extract DT...", INFO)
+                dagger = ClassificationTrustee(expert=teacher)
 
                 dagger.fit(
                     X_train,
@@ -282,30 +271,12 @@ def main(leaf_nodes):
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    feature_names=feature_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "nodagger_accuracy",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #######################################
                 ######### NODAGGER + FIDELITY #########
                 #######################################
 
-                log("Using Classification Dagger algorithm to extract DT...", INFO)
-                dagger = ClassificationDagger(expert=teacher)
+                log("Using Classification Trustee algorithm to extract DT...", INFO)
+                dagger = ClassificationTrustee(expert=teacher)
 
                 dagger.fit(
                     X_train,
@@ -344,30 +315,12 @@ def main(leaf_nodes):
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    feature_names=feature_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "nodagger_fidelity",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #####################################
                 ######### DAGGER + ACCURACY #########
                 #####################################
 
-                log("Using Classification Dagger algorithm to extract DT...", INFO)
-                dagger = ClassificationDagger(expert=teacher)
+                log("Using Classification Trustee algorithm to extract DT...", INFO)
+                dagger = ClassificationTrustee(expert=teacher)
 
                 dagger.fit(
                     X_train,
@@ -405,30 +358,12 @@ def main(leaf_nodes):
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    feature_names=feature_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "dagger_accuracy",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #####################################
                 ######### DAGGER + FIDELITY #########
                 #####################################
 
-                log("Using Classification Dagger algorithm to extract DT...", INFO)
-                dagger = ClassificationDagger(expert=teacher)
+                log("Using Classification Trustee algorithm to extract DT...", INFO)
+                dagger = ClassificationTrustee(expert=teacher)
 
                 dagger.fit(
                     X_train,
@@ -463,24 +398,6 @@ def main(leaf_nodes):
                         f1_score(y_pred, dt_y_pred, average="weighted"),
                         f1_score(y_test, dt_y_pred, average="weighted"),
                     ]
-                )
-
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    feature_names=feature_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "dagger_fidelity",
-                        dt.tree_.node_count,
-                        i,
-                    )
                 )
 
 
@@ -568,6 +485,8 @@ def plot_results():
         width = 0.1
         fig, ax = plt.subplots()
         locs = np.arange(len(x))  # the label locations
+        num_col = len(x) - 1
+        width = 0.95 / num_col
         colors = [
             "#d75d5b",
             "#a7c3cd",
@@ -581,13 +500,9 @@ def plot_results():
         for idx, values in enumerate(y):
             means = [val[0] for val in values]
             yerr = [val[2] - val[1] for val in values]
-            print(yerr)
+            delta_p = 0.125 + (width * idx)
             ax.bar(
-                locs - (width * (idx + 1))
-                if idx + 1 < (len(y) / 2)
-                else locs + (width * (idx + 1))
-                if idx + 1 > (len(y) / 2)
-                else locs,
+                [p + delta_p for p in locs],
                 means,
                 width,
                 yerr=yerr,

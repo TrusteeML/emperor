@@ -12,8 +12,11 @@
 import os
 import numpy as np
 
+import input_data
+
 # start tensorflow interactiveSession
 import tensorflow.compat.v1 as tf  # load MNIST data
+
 
 tf.compat.v1.disable_eager_execution()
 
@@ -102,25 +105,22 @@ class DeepTraffic:
         self.actual_label = tf.argmax(self.y_, 1)
         self.label, self.idx, self.count = tf.unique_with_counts(self.actual_label)
         self.cross_entropy = -tf.reduce_sum(self.y_ * tf.log(self.y_conv))
-        self.train_step = tf.train.GradientDescentOptimizer(1e-4).minimize(
-            self.cross_entropy
-        )
+        self.train_step = tf.train.GradientDescentOptimizer(1e-4).minimize(self.cross_entropy)
         self.predict_label = tf.argmax(self.y_conv, 1)
-        self.label_p, self.dx_p, self.count_p = tf.unique_with_counts(
-            self.predict_label
-        )
+        self.label_p, self.dx_p, self.count_p = tf.unique_with_counts(self.predict_label)
         self.correct_prediction = tf.equal(self.predict_label, self.actual_label)
         self.accuracy = tf.reduce_mean(tf.cast(self.correct_prediction, "float"))
         self.correct_label = tf.boolean_mask(self.actual_label, self.correct_prediction)
-        self.label_c, self.idx_c, self.count_c = tf.unique_with_counts(
-            self.correct_label
-        )
+        self.label_c, self.idx_c, self.count_c = tf.unique_with_counts(self.correct_label)
 
-    def fit(self, dataset, model_dir=""):
+    def __del__(self):
+        self.sess.close()
+
+    def fit(self, dataset, y=None, model_dir=""):
         # if model exists: restore it
         # else: train a new model and save it
         saver = tf.train.Saver()
-        model_name = "model_" + str(CLASS_NUM) + "class_" + model_dir
+        model_name = f"model_{str(CLASS_NUM)}class_{model_dir}"
         model = model_name + "/" + model_name + ".ckpt"
         print(model)
         i = 0
@@ -129,9 +129,13 @@ class DeepTraffic:
             if not os.path.exists(model_name):
                 os.makedirs(model_name)
 
+            if y is not None:
+                dataset = input_data.DataSet(dataset, input_data.dense_to_one_hot(y, num_classes=2), skip_reshape=True)
+
             for i in range(TRAIN_ROUND + 1):
                 batch = dataset.next_batch(50)
                 if i % 100 == 0:
+                    print(self.accuracy)
                     train_accuracy = self.accuracy.eval(
                         feed_dict={
                             self.x: batch[0],
@@ -144,13 +148,11 @@ class DeepTraffic:
                     # if i%2000 == 0:
                     #     with open('out.txt','a') as f:
                     #         f.write(s + "\n")
-                self.train_step.run(
-                    feed_dict={self.x: batch[0], self.y_: batch[1], self.keep_prob: 0.5}
-                )
+                self.train_step.run(feed_dict={self.x: batch[0], self.y_: batch[1], self.keep_prob: 0.5})
                 # i += 1
 
-            save_path = saver.save(self.sess, model)
-            print("Model saved in file:", save_path)
+            # save_path = saver.save(self.sess, model)
+            # print("Model saved in file:", save_path)
         else:
             saver.restore(self.sess, model)
             print("Model restored: " + model)

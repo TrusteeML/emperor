@@ -6,7 +6,7 @@
 |                                    +-----------------------------------------------------------+-----------------------------------------------------------+                                     |
 |                                    |                          Blackbox                         |                          Whitebox                         |                                     |
 |                                    +-----------------------------------------------------------+-----------------------------------------------------------+                                     |
-|                                    |                   Model:          DQNPolicy               |        Explanation method:          Dagger                |                                     |
+|                                    |                   Model:          DQNPolicy               |        Explanation method:          Trustee                |                                     |
 |                                    |               Dataset size:         47000                 |               Model:        DecisionTreeClassifier        |                                     |
 |                                    |             Train/Test Split:  70.00% / 30.00%            |            Iterations:               100                  |                                     |
 |                                    |                                                           |            Sample size:             50.00%                |                                     |

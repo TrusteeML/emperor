@@ -11,7 +11,7 @@ from sklearn.metrics import f1_score, classification_report
 from sklearn.model_selection import train_test_split
 
 
-from skexplain.imitation import ClassificationDagger
+from skexplain.imitation import ClassificationTrustee
 from skexplain.utils import log, input_data
 
 from deeptraffic import DeepTraffic
@@ -108,24 +108,14 @@ def main():
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render("{}/dt_{}_{}_{}".format(output_dir, "strawman", dt.tree_.node_count, i))
-
                 #######################################
-                ######### NODAGGER + ACCURACY #########
+                ######### NOtrustee + ACCURACY #########
                 #######################################
 
-                logger.log("Using Classification Dagger algorithm to extract DT...")
-                dagger = ClassificationDagger(expert=deep_traffic)
+                logger.log("Using Classification Trustee algorithm to extract DT...")
+                trustee = ClassificationTrustee(expert=deep_traffic)
 
-                dagger.fit(
+                trustee.fit(
                     X_train,
                     y_train,
                     num_iter=num_iter,
@@ -137,7 +127,7 @@ def main():
                 )
 
                 logger.log("#" * 10, "Explanation validation", "#" * 10)
-                (dt, reward, idx) = dagger.explain()
+                (dt, reward, idx) = trustee.explain()
 
                 logger.log("Accuracy-based  model explanation {} local fidelity: {}".format(idx, reward))
                 dt_y_pred = dt.predict(X_test)
@@ -152,7 +142,7 @@ def main():
                     [
                         i,
                         samples_size,
-                        "no_dagger_accuracy",
+                        "no_trustee_accuracy",
                         dt.tree_.node_count,
                         f1_score(y_pred, dt_y_pred, average="macro"),
                         f1_score(y_test, dt_y_pred, average="macro"),
@@ -161,31 +151,14 @@ def main():
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "nodagger_accuracy",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #######################################
-                ######### NODAGGER + FIDELITY #########
+                ######### NOtrustee + FIDELITY #########
                 #######################################
 
-                logger.log("Using Classification Dagger algorithm to extract DT...")
-                dagger = ClassificationDagger(expert=deep_traffic)
+                logger.log("Using Classification Trustee algorithm to extract DT...")
+                trustee = ClassificationTrustee(expert=deep_traffic)
 
-                dagger.fit(
+                trustee.fit(
                     X_train,
                     y_train,
                     num_iter=num_iter,
@@ -197,7 +170,7 @@ def main():
                 )
 
                 logger.log("#" * 10, "Explanation validation", "#" * 10)
-                (dt, reward, idx) = dagger.explain()
+                (dt, reward, idx) = trustee.explain()
 
                 logger.log("Accuracy-based  model explanation {} local fidelity: {}".format(idx, reward))
                 dt_y_pred = dt.predict(X_test)
@@ -212,7 +185,7 @@ def main():
                     [
                         i,
                         samples_size,
-                        "no_dagger_fidelity",
+                        "no_trustee_fidelity",
                         dt.tree_.node_count,
                         f1_score(y_pred, dt_y_pred, average="macro"),
                         f1_score(y_test, dt_y_pred, average="macro"),
@@ -221,31 +194,14 @@ def main():
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "nodagger_fidelity",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #####################################
-                ######### DAGGER + ACCURACY #########
+                ######### trustee + ACCURACY #########
                 #####################################
 
-                logger.log("Using Classification Dagger algorithm to extract DT...")
-                dagger = ClassificationDagger(expert=deep_traffic)
+                logger.log("Using Classification Trustee algorithm to extract DT...")
+                trustee = ClassificationTrustee(expert=deep_traffic)
 
-                dagger.fit(
+                trustee.fit(
                     X_train,
                     y_train,
                     num_iter=num_iter,
@@ -256,7 +212,7 @@ def main():
                 )
 
                 logger.log("#" * 10, "Explanation validation", "#" * 10)
-                (dt, reward, idx) = dagger.explain()
+                (dt, reward, idx) = trustee.explain()
 
                 logger.log("Accuracy-based  model explanation {} local fidelity: {}".format(idx, reward))
                 dt_y_pred = dt.predict(X_test)
@@ -287,7 +243,7 @@ def main():
                     [
                         i,
                         samples_size,
-                        "dagger_accuracy",
+                        "trustee_accuracy",
                         dt.tree_.node_count,
                         f1_score(y_pred, dt_y_pred, average="macro"),
                         f1_score(y_test, dt_y_pred, average="macro"),
@@ -296,31 +252,14 @@ def main():
                     ]
                 )
 
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "dagger_accuracy",
-                        dt.tree_.node_count,
-                        i,
-                    )
-                )
-
                 #####################################
-                ######### DAGGER + FIDELITY #########
+                ######### trustee + FIDELITY #########
                 #####################################
 
-                logger.log("Using Classification Dagger algorithm to extract DT...")
-                dagger = ClassificationDagger(expert=deep_traffic)
+                logger.log("Using Classification Trustee algorithm to extract DT...")
+                trustee = ClassificationTrustee(expert=deep_traffic)
 
-                dagger.fit(
+                trustee.fit(
                     X_train,
                     y_train,
                     num_iter=num_iter,
@@ -330,7 +269,7 @@ def main():
                 )
 
                 logger.log("#" * 10, "Explanation validation", "#" * 10)
-                (dt, reward, idx) = dagger.explain()
+                (dt, reward, idx) = trustee.explain()
 
                 logger.log("Fidelity-based model explanation {} local fidelity: {}".format(idx, reward))
                 dt_y_pred = dt.predict(X_test)
@@ -361,30 +300,13 @@ def main():
                     [
                         i,
                         samples_size,
-                        "dagger_fidelity",
+                        "trustee_fidelity",
                         dt.tree_.node_count,
                         f1_score(y_pred, dt_y_pred, average="macro"),
                         f1_score(y_test, dt_y_pred, average="macro"),
                         f1_score(y_pred, dt_y_pred, average="weighted"),
                         f1_score(y_test, dt_y_pred, average="weighted"),
                     ]
-                )
-
-                dot_data = tree.export_graphviz(
-                    dt,
-                    class_names=class_names,
-                    filled=True,
-                    rounded=True,
-                    special_characters=True,
-                )
-                graph = graphviz.Source(dot_data)
-                graph.render(
-                    "{}/dt_{}_{}_{}".format(
-                        output_dir,
-                        "dagger_fidelity",
-                        dt.tree_.node_count,
-                        i,
-                    )
                 )
 
     deep_traffic.sess.close()
@@ -474,6 +396,8 @@ def plot_results():
         width = 0.3
         fig, ax = plt.subplots()
         locs = np.arange(len(x))  # the label locations
+        num_col = len(x) - 1
+        width = 0.95 / num_col
         colors = [
             "#d75d5b",
             "#a7c3cd",
@@ -487,9 +411,9 @@ def plot_results():
         for idx, values in enumerate(y):
             means = [val[0] for val in values]
             yerr = [val[2] - val[1] for val in values]
-            print(yerr)
+            delta_p = 0.125 + (width * idx)
             ax.bar(
-                locs - width if idx == 0 else locs + width if idx == 2 else locs,
+                [p + delta_p for p in locs],
                 means,
                 width,
                 yerr=yerr,
@@ -506,5 +430,5 @@ def plot_results():
 
 
 if __name__ == "__main__":
-    main()
-    # plot_results()
+    # main()
+    plot_results()
