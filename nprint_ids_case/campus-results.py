@@ -1,4 +1,5 @@
 import graphviz
+import pickle
 
 from sklearn import tree
 from sklearn.metrics import classification_report, confusion_matrix
@@ -15,14 +16,28 @@ from nprintml.label.aggregator import registry as aggregators
 AGGREGATOR = "pcap"
 LABELS_PATH = "res/campus_dataset/labels.txt"
 NPRINT_PATH = "res/campus_dataset/npts"
-MODELS_DIR = "res/nprint_dataset/full_model"
-OUTPUT_DIR = "res/output/full_model"
+MODELS_PATH = "res/nprint_dataset/nprintml/model"
+OUTPUT_PATH = "results/campus_results"
 
 
 def main():
-    logger = log.Logger("{}/output.log".format(OUTPUT_DIR))
+    logger = log.Logger("{}/output.log".format(OUTPUT_PATH))
     logger.log("Reading nPrint dataset...")
 
+    labels = list(
+        sorted(
+            [
+                "benign_benign",
+                "malware_ddos",
+                "malware_dos",
+                "malware_ftp-patator",
+                "malware_infiltration",
+                "malware_port-scan",
+                "malware_ssh-patator",
+                "malware_web-attack",
+            ]
+        )
+    )
     aggr = aggregators[AGGREGATOR](LABELS_PATH)
     df = aggr(NPRINT_PATH)
 
@@ -33,7 +48,7 @@ def main():
     logger.log("Done!")
 
     logger.log("Loading nPrintML model...")
-    blackbox = TabularPredictor.load(MODELS_DIR, verbosity=1)
+    blackbox = TabularPredictor.load(MODELS_PATH, verbosity=1)
     logger.log("Done!")
 
     y_pred = blackbox.predict(X)
@@ -41,7 +56,7 @@ def main():
     logger.log("\n{}".format(classification_report(y, y_pred, digits=3)))
 
     logger.log("Full confusion matrix: ")
-    logger.log(confusion_matrix(y, y_pred, labels=sorted(y.unique())))
+    logger.log(confusion_matrix(y, y_pred, labels=labels))
 
     # Decision tree extraction
     logger.log("Using Classification Trustee algorithm to extract DT...")
@@ -77,16 +92,19 @@ def main():
         )
     )
 
+    with open(f"{OUTPUT_PATH}/dt.pkl", "wb") as f:
+        pickle.dump(dt, f)
+
     dot_data = tree.export_graphviz(
         dt,
-        class_names=sorted(y.unique()),
+        class_names=sorted(set(dt_y_pred)),
         feature_names=X.columns,
         filled=True,
         rounded=True,
         special_characters=True,
     )
     graph = graphviz.Source(dot_data)
-    graph.render("{}/dt_{}_{}_{}".format(OUTPUT_DIR, "TabularPredictor", "trustee", dt.get_n_leaves()))
+    graph.render("{}/dt_{}_{}_{}".format(OUTPUT_PATH, "TabularPredictor", "trustee", dt.get_n_leaves()))
 
 
 if __name__ == "__main__":
