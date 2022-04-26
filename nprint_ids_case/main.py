@@ -8,11 +8,11 @@ from nprintml.label.aggregator import registry as aggregators
 
 
 AGGREGATOR = "pcap"
-LABELS_PATH = "res/nprint_dataset/sub_labels.txt"
-# LABELS_PATH = "res/nprint_dataset/labels.txt"
+# LABELS_PATH = "res/nprint_dataset/sub_labels.txt"
+LABELS_PATH = "res/nprint_dataset/labels.txt"
 MODELS_PATH = "res/nprint_dataset/nprintml/model"
-# NPRINT_PATH = "res/nprint_dataset/nprintml/nprint"
-NPRINT_PATH = "res/nprint_dataset/nprintml/sub_nprint"
+NPRINT_PATH = "res/nprint_dataset/nprintml/nprint"
+# NPRINT_PATH = "res/nprint_dataset/nprintml/sub_nprint"
 OUTPUT_PATH = "res/output/full_model/"
 REPORT_PATH = f"{OUTPUT_PATH}/report/trust_report.obj"
 

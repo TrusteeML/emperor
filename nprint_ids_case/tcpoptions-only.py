@@ -11,11 +11,11 @@ from nprintml.label.aggregator import registry as aggregators
 # We want to fit the trustee and visualize the resulting decision tree of our full dataset using the model trained on tcp options only
 # therefore the labels and nprint path should point to full dataset and model path should point to tcpoptions_only model
 AGGREGATOR = "pcap"
-# LABELS_PATH = "res/nprint_tcp_options_dataset/labels.txt"  # labels file
-LABELS_PATH = "res/nprint_tcp_options_dataset/sub_labels.txt"  # labels file
+LABELS_PATH = "res/nprint_tcp_options_dataset/labels.txt"  # labels file
+# LABELS_PATH = "res/nprint_tcp_options_dataset/sub_labels.txt"  # labels file
 # *.npt folder, result of pcap->npt parsing (usually nprint folder of output dir of nprintml)
-# NPRINT_PATH = "res/nprint_tcp_options_dataset/nprintml/nprint"
-NPRINT_PATH = "res/nprint_tcp_options_dataset/nprintml/sub_nprint"
+NPRINT_PATH = "res/nprint_tcp_options_dataset/nprintml/nprint"
+# NPRINT_PATH = "res/nprint_tcp_options_dataset/nprintml/sub_nprint"
 # model folder, usually 'model' folder of output_dir of nprintml
 MODELS_PATH = "res/nprint_tcp_options_dataset/nprintml/model"
 OUTPUT_PATH = "res/output/tcpoptions_only_model"
