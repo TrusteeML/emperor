@@ -1,0 +1,15 @@
+nprintml \
+  --concurrency 30 \
+  --tcp \
+  --ipv4 \
+  --aggregator pcap \
+  --count 5 \
+  --nprint-filter "ipv4_src_[0-9]+|ipv4_dst_[0-9]+" \
+  --compress \
+  --label-file nprint_dataset/labels.txt \
+  --save-nprint \
+  --pcap-dir nprint_dataset/nprintml/nprint \
+  --output nprint_dataset/nprintml/ \
+  --verbose \
+  --quality 2 \
+  --limit 30000

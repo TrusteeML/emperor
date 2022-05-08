@@ -1,0 +1,9 @@
+[nprint]
+cmd = "nprint --pcap_file [input_pcap] --ipv4 --count 1 --tcp --nprint_filter ipv4_src_[0-9]+|ipv4_dst_[0-9]+|tcp_sprt_[0-9]+|tcp_dprt_[0-9]+|tcp_seq_[0-9]+|tcp_ackn_[0-9]+"
+
+[timing]
+net = [ 23.529754638671875, 26.970746967000004,]
+generate_npts = [ 314.71705389022827, 334.795039665,]
+label = [ 295.64372658729553, 312.335050481,]
+learn = [ 55.14118456840515, 978.102408216,]
+total = [ 374.42087483406067, 1317.508246498,]

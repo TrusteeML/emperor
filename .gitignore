@@ -1,9 +1,11 @@
 # Byte-compiled / optimized / DLL files
 *.joblib
 
+.vscode/
 __pycache__/
 *.py[cod]
 *$py.class
+poetry.lock
 
 # C extensions
 *.so
@@ -132,16 +134,14 @@ dmypy.json
 
 # Custom files
 *.csv
-*.png
 .DS_Store
 *.zip
 *.md5
 *.html
-iot_case/res/dataset/original_files/
-nprint_os_case/res/**/nprintml/*
-nprint_ids_case/res/**/nprintml/*
-*.pdf
-*dt*
+*iot_case/res/dataset/original_files/
+*nprint_os_case/res/**/nprintml/*
+use_cases/nprint_ids_case/res/**/nprintml
+*dt_*
 max_depth_*
 max_leaves_*
 ccp_*
@@ -149,3 +149,6 @@ ccp_*
 *.npt
 *.m4s
 *.obj
+
+*strawman*
+use_cases/pensieve_case/abr_browser_dir/chrome_data_dir/
