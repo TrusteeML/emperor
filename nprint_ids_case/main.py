@@ -10,10 +10,10 @@ from nprintml.label.aggregator import registry as aggregators
 AGGREGATOR = "pcap"
 # LABELS_PATH = "res/nprint_dataset/sub_labels.txt"
 LABELS_PATH = "res/nprint_dataset/labels.txt"
-MODELS_PATH = "res/nprint_dataset/nprintml/model"
-NPRINT_PATH = "res/nprint_dataset/nprintml/nprint"
-# NPRINT_PATH = "res/nprint_dataset/nprintml/sub_nprint"
-OUTPUT_PATH = "res/output/full_model/"
+MODELS_PATH = "res/nprint_dataset/full_model/model"
+# NPRINT_PATH = "res/nprint_dataset/full_model/nprint"
+NPRINT_PATH = "res/nprint_dataset/nprintml/sub_nprint"
+OUTPUT_PATH = "results/full_model/"
 REPORT_PATH = f"{OUTPUT_PATH}/report/trust_report.obj"
 
 
@@ -40,17 +40,15 @@ def main():
             blackbox,
             X=X,
             y=y,
-            top_n=10,
-            max_iter=1,
-            trustee_num_iter=1,
-            num_quantiles=20,
-            # skip_retrain=True,
+            top_k=20,
+            max_iter=100,
+            trustee_num_iter=100,
+            num_quantiles=0,
             trustee_sample_size=0.3,
             skip_retrain=True,
             class_names=sorted(y.unique()),  # [1:] to remove Kali linux instance
             feature_names=X.columns,
         )
-
     logger.log(trust_report)
     trust_report.plot(f"{OUTPUT_PATH}/report", aggregate=True)
     trust_report.save(OUTPUT_PATH)

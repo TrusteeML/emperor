@@ -16,7 +16,7 @@ from nprintml.label.aggregator import registry as aggregators
 AGGREGATOR = "pcap"
 LABELS_PATH = "res/campus_dataset/labels.txt"
 NPRINT_PATH = "res/campus_dataset/npts"
-MODELS_PATH = "res/nprint_dataset/nprintml/model"
+MODELS_PATH = "res/nprint_dataset/full_model/model"
 OUTPUT_PATH = "results/campus_results"
 
 

@@ -3,7 +3,7 @@ import shutil
 import pandas as pd
 
 
-NPTS_PATH = "nprintml/nprint/"
+NPTS_PATH = "full_model/nprint/"
 SUB_NPTS_PATH = "nprintml/sub_nprint/"
 LABELS_PATH = "labels.txt"
 SUB_LABELS_PATH = "sub_labels.txt"
@@ -15,7 +15,7 @@ def main():
         os.makedirs(SUB_NPTS_PATH)
 
     df = pd.read_csv(LABELS_PATH, header=0)
-    df = df.groupby("label").head(10).reset_index(drop=True)
+    df = df.groupby("label").head(5000).reset_index(drop=True)
     df.to_csv(SUB_LABELS_PATH, header=True, index=False)
     df.apply(lambda x: shutil.copy(f"{NPTS_PATH}{x['item'].replace('pcap', 'npt')}", SUB_NPTS_PATH), axis=1)
 
