@@ -20,7 +20,6 @@ from unittest import skip
 import graphviz
 from dqn import *
 from dt import *
-from heartbleed_case.main import OUTPUT_PATH
 from load_trace import *
 from log import *
 from pensieve_viper_env import *
@@ -30,10 +29,7 @@ import pandas as pd
 from sklearn import tree
 from sklearn.metrics import classification_report
 
-from skexplain.imitation import ClassificationTrustee
 from skexplain.report import TrustReport
-from sklearn.model_selection import train_test_split
-
 
 from sklearn_porter import Porter
 
@@ -45,7 +41,7 @@ REPORT_PATH = f"{OUTPUT_PATH}/report/trust_report.obj"
 
 def learn_dt(leaf_nodes):
     if os.path.exists(REPORT_PATH):
-        log(f"Loading trust report from {REPORT_PATH}..."), INFO)
+        log(f"Loading trust report from {REPORT_PATH}...", INFO)
         trust_report = TrustReport.load(REPORT_PATH)
         log("Done!", INFO)
     else:
@@ -168,50 +164,30 @@ def learn_dt(leaf_nodes):
         with open("./output/metisDt.js", "w") as writer:
             writer.write(output)
 
-        print("Using Classification Trustee algorithm to extract DT...")
-        dagger = ClassificationTrustee(expert=teacher)
-        dagger.fit(
-            X,
-            y,
-            num_iter=100,
-            max_leaf_nodes=None,
-            samples_size=0.5,
-            # ccp_alpha=0.001,
+        trust_report = TrustReport(
+            teacher,
+            X=X,
+            y=y,
+            max_iter=0,
+            trustee_num_iter=30,
+            num_pruning_iter=0,
+            trustee_sample_size=0.3,
             predict_method_name="predict_serialized",
+            class_names=class_names,
+            feature_names=feature_names,
+            skip_retrain=True,
             verbose=True,
         )
 
-        print("#" * 10, "Explanation validation", "#" * 10)
-        (dt, reward, idx) = dagger.explain()
-
-        print("Number of nodes: {}".format(dt.tree_.node_count))
-        print("Model explanation {} training fidelity: {}".format(idx, reward))
-        dt_y_pred = dt.predict(X)
-
-        print("Model explanation test fidelity report:")
-        print(
-            "\n{}".format(
-                classification_report(
-                    y,
-                    dt_y_pred,
-                    digits=3,
-                )
-            )
-        )
-
-        print("Model explanation classification report:")
-        print(
-            "\n{}".format(
-                classification_report(
-                    y,
-                    dt_y_pred,
-                    digits=3,
-                )
-            )
-        )
+        dt_y_pred = trust_report.max_dt.predict(X)
+        y_pred = trust_report.blackbox.predict_serialized(X)
+        log("Explanation classification report will all data:", INFO)
+        log(f"{classification_report(y, y_pred, digits=3)}", INFO)
+        log("Explanation fidelity report will all data:", INFO)
+        log(f"{classification_report(y_pred, dt_y_pred, digits=3)}", INFO)
 
         dot_data = tree.export_graphviz(
-            dt,
+            trust_report.max_dt,
             filled=True,
             rounded=True,
             special_characters=True,
@@ -219,28 +195,16 @@ def learn_dt(leaf_nodes):
             feature_names=feature_names,
         )
         graph = graphviz.Source(dot_data)
-        graph.render("./output/dt_{}_{}_{}".format("Pensive", "dagger", dt.get_n_leaves()))
+        graph.render("./output/dt_{}_{}_{}".format("Pensive", "trustee", trust_report.max_dt.get_n_leaves()))
 
-        porter = Porter(dt, language="js")
+        porter = Porter(trust_report.max_dt, language="js")
         output = porter.export(embed_data=True)
         with open("./output/maTrusteeDt.js", "w") as writer:
             writer.write(output)
             # Further file processing goes here
 
-        trust_report = TrustReport(
-            teacher,
-            X=X,
-            y=X,
-            max_iter=1,
-            predict_method_name="predict_serialized",
-            dagger_ccp_alpha=0.05,
-            class_names=class_names,
-            feature_names=feature_names,
-            skip_retrain=True,
-        )
-
-    log(trust_report.make(), INFO)
-    trust_report.save()
+    log(f"{trust_report}", INFO)
+    trust_report.save(OUTPUT_PATH)
 
 
 if __name__ == "__main__":

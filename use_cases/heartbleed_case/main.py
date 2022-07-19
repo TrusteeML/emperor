@@ -1,12 +1,16 @@
 import os
-import numpy as np
+import graphviz
+
+
+from sklearn import tree
 
 from skexplain.report import TrustReport
 from skexplain.utils import dataset, log, persist
 from skexplain.utils.const import CIC_IDS_2017_DATASET_META
 
+
+from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
 
 
 DF_PATH = "res/dataset/CIC-IDS-2017/"
@@ -36,24 +40,61 @@ def main():
         )
         logger.log("Done!")
 
-        blackbox = RandomForestClassifier(n_jobs=4)
+        # Step 2: Train black-box model with loaded dataset
+        logger.log("#" * 10, "Model init", "#" * 10)
+        logger.log(f"Looking for pre-trained model: {MODEL_PATH}...")
+        blackbox = persist.load_model(MODEL_PATH)
+        if not blackbox:
+            blackbox = RandomForestClassifier(n_jobs=4)
+
         trust_report = TrustReport(
             blackbox,
             X=X,
             y=y,
             logger=logger,
-            top_k=20,
-            max_iter=10,
-            trustee_num_iter=30,
-            num_pruning_iter=10,
+            top_k=10,
+            max_iter=50,
+            trustee_num_iter=50,
+            num_pruning_iter=30,
             trustee_sample_size=0.3,
+            # trustee_max_depth=6,
+            analyze_stability=True,
+            skip_retrain=True,
             feature_names=feature_names,
             class_names=CIC_IDS_2017_DATASET_META["classes"],
             verbose=True,
         )
 
+        dt_y_pred = trust_report.max_dt.predict(X)
+        y_pred = trust_report.blackbox.predict(X)
+        logger.log("Explanation classification report will all data:")
+        logger.log(f"{classification_report(y, y_pred, digits=3, target_names=CIC_IDS_2017_DATASET_META['classes'])}")
+        logger.log("Explanation fidelity report will all data:")
+        logger.log(
+            f"{classification_report(y_pred, dt_y_pred, digits=3, target_names=CIC_IDS_2017_DATASET_META['classes'])}"
+        )
+
+    # stable_explanations = trust_report.get_stable_explanations()
+    # stability_output_dir = f"{OUTPUT_PATH}/stable"
+    # if not os.path.exists(stability_output_dir):
+    #     os.makedirs(stability_output_dir)
+    
+    # logger.log("Saving stability decision trees...")
+    # for idx, it in enumerate(stable_explanations):
+    #     print(it)
+    #     dot_data = tree.export_graphviz(
+    #         it["dt"],
+    #         class_names=CIC_IDS_2017_DATASET_META["classes"],
+    #         feature_names=trust_report.feature_names,
+    #         filled=True,
+    #         rounded=True,
+    #         special_characters=True,
+    #     )
+    #     graph = graphviz.Source(dot_data)
+    #     graph.render(f"{stability_output_dir}/dt_{idx}")
+
     logger.log(trust_report)
-    trust_report.save(OUTPUT_PATH)
+    trust_report.save(OUTPUT_PATH)  # , save_dts=True)
 
 
 if __name__ == "__main__":

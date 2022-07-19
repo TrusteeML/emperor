@@ -1,4 +1,7 @@
 import os
+import graphviz
+
+from sklearn import tree
 
 from skexplain.utils import log
 from skexplain.report import TrustReport
@@ -40,18 +43,38 @@ def main():
             blackbox,
             X=X,
             y=y,
-            top_k=20,
-            max_iter=100,
-            trustee_num_iter=100,
-            num_quantiles=0,
-            trustee_sample_size=0.3,
+            top_k=10,
+            max_iter=50,
+            trustee_num_iter=10,
+            num_pruning_iter=0,
             skip_retrain=True,
-            class_names=sorted(y.unique()),  # [1:] to remove Kali linux instance
+            analyze_stability=True,
+            trustee_sample_size=0.3,
+            class_names=sorted(y.unique()),
             feature_names=X.columns,
+            verbose=True,
         )
 
+    stable_explanations = trust_report.get_stable_explanations()
+    stability_output_dir = f"{OUTPUT_PATH}/stable"
+    if not os.path.exists(stability_output_dir):
+        os.makedirs(stability_output_dir)
+
+    logger.log("Saving stability decision trees...")
+    for idx, it in enumerate(stable_explanations):
+        print(it)
+        dot_data = tree.export_graphviz(
+            it["dt"],
+            class_names=sorted(trust_report.y.unique()),
+            feature_names=trust_report.feature_names,
+            filled=True,
+            rounded=True,
+            special_characters=True,
+        )
+        graph = graphviz.Source(dot_data)
+        graph.render(f"{stability_output_dir}/dt_{idx}")
+
     logger.log(trust_report)
-    trust_report.plot(f"{OUTPUT_PATH}/report", aggregate=True)
     trust_report.save(OUTPUT_PATH)
 
 

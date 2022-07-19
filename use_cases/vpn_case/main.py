@@ -2,6 +2,10 @@
 import os
 import numpy as np
 import input_data
+import graphviz
+
+
+from sklearn import tree
 
 from sklearn.metrics import classification_report
 
@@ -55,18 +59,39 @@ def main():
             X_test=X_test,
             y_train=y_train,
             y_test=y_test,
+            top_k=10,
             max_iter=50,
-            trustee_num_iter=10,
-            num_quantiles=0,
-            class_names=list(class_names),
+            trustee_num_iter=50,
+            num_pruning_iter=0,
+            trustee_sample_size=0.3,
+            analyze_stability=True,
             skip_retrain=True,
+            class_names=list(class_names),
             logger=logger,
             verbose=False,
         )
         deep_traffic.sess.close()
 
+    stable_explanations = trust_report.get_stable_explanations()
+    stability_output_dir = f"{OUTPUT_PATH}/stable"
+    if not os.path.exists(stability_output_dir):
+        os.makedirs(stability_output_dir)
+
+    logger.log("Saving stability decision trees...")
+    for idx, it in enumerate(stable_explanations):
+        print(it)
+        dot_data = tree.export_graphviz(
+            it["dt"],
+            class_names=list(class_names),
+            feature_names=trust_report.feature_names,
+            filled=True,
+            rounded=True,
+            special_characters=True,
+        )
+        graph = graphviz.Source(dot_data)
+        graph.render(f"{stability_output_dir}/dt_{idx}")
+
     logger.log(trust_report)
-    trust_report.plot(f"{OUTPUT_PATH}/report")
     trust_report.save(OUTPUT_PATH)
 
 
