@@ -138,7 +138,7 @@ rootpath = "0.1.1"
 s3transfer = "0.5.2"
 sacrebleu = "2.0.0"
 sacremoses = "0.0.47"
-scikit-explain = {git = "https://github.com/anon4papers/scikit-explain.git", branch="main"}
+trustee = {git = "https://github.com/asjacobs92/trustee.git", branch="main"}
 scikit-learn = "0.24.2"
 scipy = "1.6.3"
 sentencepiece = "0.1.95"

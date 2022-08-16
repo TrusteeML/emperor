@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from skexplain.imitation import ClassificationTrustee
-from skexplain.utils import dataset, log
-from skexplain.utils.const import IOT_DATASET_META
+from trustee import ClassificationTrustee
+from trustee.utils import dataset, log
+from trustee.utils.const import IOT_DATASET_META
 
 from sklearn import tree
 from sklearn.metrics import f1_score, classification_report

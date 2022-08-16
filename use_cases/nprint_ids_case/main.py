@@ -3,8 +3,8 @@ import graphviz
 
 from sklearn import tree
 
-from skexplain.utils import log
-from skexplain.report import TrustReport
+from trustee.utils import log
+from trustee.report import TrustReport
 
 from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators

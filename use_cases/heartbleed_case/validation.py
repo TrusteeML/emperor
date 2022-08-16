@@ -1,7 +1,7 @@
 import numpy as np
 
-from skexplain.utils import dataset, log, persist
-from skexplain.utils.const import CIC_IDS_2017_DATASET_META
+from trustee.utils import dataset, log, persist
+from trustee.utils.const import CIC_IDS_2017_DATASET_META
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report

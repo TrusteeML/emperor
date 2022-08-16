@@ -23,7 +23,7 @@ We reproduced the environment according to our understanding and knowledge. We u
 poetry init
 ```
 
-##3. Install scikit-explain
+##3. Install trustee
 ```shell
 #TODO: add
 ```

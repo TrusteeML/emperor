@@ -10,8 +10,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-from skexplain.utils import log
-from skexplain.report import TrustReport
+from trustee.utils import log
+from trustee.report import TrustReport
 
 # from torchvision.utils import make_grid as make_grid
 

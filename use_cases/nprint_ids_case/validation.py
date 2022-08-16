@@ -4,8 +4,8 @@ import pickle
 from sklearn import tree
 from sklearn.metrics import classification_report, confusion_matrix
 
-from skexplain.utils import log
-from skexplain.imitation import ClassificationTrustee
+from trustee.utils import log
+from trustee import ClassificationTrustee
 
 from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators

@@ -20,8 +20,8 @@ from sklearn import tree
 from sklearn.metrics import f1_score, classification_report
 from sklearn.model_selection import train_test_split
 
-from skexplain.imitation import ClassificationTrustee
-from skexplain.utils import log
+from trustee import ClassificationTrustee
+from trustee.utils import log
 
 # from torchvision.utils import make_grid as make_grid
 

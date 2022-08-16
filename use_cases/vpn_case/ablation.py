@@ -11,8 +11,8 @@ from sklearn.metrics import f1_score, classification_report
 from sklearn.model_selection import train_test_split
 
 
-from skexplain.imitation import ClassificationTrustee
-from skexplain.utils import log, input_data
+from trustee import ClassificationTrustee
+from trustee.utils import log, input_data
 
 from deeptraffic import DeepTraffic
 

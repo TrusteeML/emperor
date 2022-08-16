@@ -5,9 +5,9 @@ import scipy.stats
 import numpy as np
 import matplotlib.pyplot as plt
 
-from skexplain.imitation import ClassificationTrustee
-from skexplain.utils import dataset, log, persist
-from skexplain.utils.const import CIC_IDS_2017_DATASET_META
+from trustee import ClassificationTrustee
+from trustee.utils import dataset, log, persist
+from trustee.utils.const import CIC_IDS_2017_DATASET_META
 
 from sklearn import tree
 from sklearn.metrics import classification_report, f1_score

@@ -11,7 +11,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-from skexplain.utils import log
+from trustee.utils import log
 
 from matplotlib import rcParams
 from matplotlib.colors import LinearSegmentedColormap

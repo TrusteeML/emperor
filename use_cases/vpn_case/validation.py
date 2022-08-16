@@ -5,7 +5,7 @@ import input_data
 
 from sklearn.metrics import classification_report
 
-from skexplain.utils import log
+from trustee.utils import log
 
 from deeptraffic import DeepTraffic
 

@@ -32,8 +32,8 @@ from rl import *
 from sklearn import tree
 from sklearn.metrics import f1_score, classification_report
 
-from skexplain.imitation import ClassificationTrustee
-from skexplain.report import trust_report
+from trustee import ClassificationTrustee
+from trustee.report import trust_report
 from sklearn.model_selection import train_test_split
 
 

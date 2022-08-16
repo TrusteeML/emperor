@@ -1,8 +1,8 @@
 import os
 
-from skexplain.report import TrustReport
-from skexplain.utils import dataset, log
-from skexplain.utils.const import IOT_DATASET_META
+from trustee.report import TrustReport
+from trustee.utils import dataset, log
+from trustee.utils.const import IOT_DATASET_META
 
 from sklearn.ensemble import RandomForestClassifier
 

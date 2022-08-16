@@ -2,7 +2,7 @@
 name = "dtextract"
 version = "0.1.0"
 description = "This packaged was forked from Bastani dtextract for reproducibility of paper results"
-authors = ["Anonymous user <anon4papers@gmail.com>"]
+authors = ["Arthur Jacobs <asjacobs@inf.ufrgs.br>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<3.9"

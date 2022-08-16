@@ -9,8 +9,8 @@ from sklearn import tree
 
 from sklearn.metrics import classification_report
 
-from skexplain.utils import log
-from skexplain.report import TrustReport
+from trustee.utils import log
+from trustee.report import TrustReport
 
 
 from deeptraffic import DeepTraffic
@@ -60,11 +60,12 @@ def main():
             y_train=y_train,
             y_test=y_test,
             top_k=10,
-            max_iter=50,
-            trustee_num_iter=50,
-            num_pruning_iter=0,
+            max_iter=0,
+            trustee_num_iter=10,
+            num_pruning_iter=30,
             trustee_sample_size=0.3,
             analyze_stability=True,
+            analyze_branches=True,
             skip_retrain=True,
             class_names=list(class_names),
             logger=logger,
@@ -79,7 +80,6 @@ def main():
 
     logger.log("Saving stability decision trees...")
     for idx, it in enumerate(stable_explanations):
-        print(it)
         dot_data = tree.export_graphviz(
             it["dt"],
             class_names=list(class_names),
@@ -91,8 +91,8 @@ def main():
         graph = graphviz.Source(dot_data)
         graph.render(f"{stability_output_dir}/dt_{idx}")
 
-    logger.log(trust_report)
     trust_report.save(OUTPUT_PATH)
+    logger.log(trust_report)
 
 
 if __name__ == "__main__":

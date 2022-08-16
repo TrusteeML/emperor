@@ -9,9 +9,9 @@ from sklearn import tree
 from sklearn.metrics import f1_score, classification_report
 from sklearn.model_selection import train_test_split
 
-from skexplain.utils import log
-from skexplain.imitation import ClassificationTrustee
-from skexplain.report import trust_report
+from trustee.utils import log
+from trustee import ClassificationTrustee
+from trustee.report import trust_report
 
 from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators

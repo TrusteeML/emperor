@@ -2,7 +2,7 @@
 name = "emperor-heartbleed"
 version = "0.1.0"
 description = "This package contains reproducibility artificats for the paper 'AI/ML and Cybersecurity: The Emperor has no Clothes'"
-authors = ["Anonymous user <anon4papers@gmail.com>"]
+authors = ["Arthur Jacobs <asjacobs@inf.ufrgs.br>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7.1,<3.9"
@@ -11,7 +11,7 @@ scipy = "^1.4.1"
 pandas = "^1.1.0"
 pydotplus = "^2.0.2"
 matplotlib = "^3.5.1"
-scikit-explain = { path = "../../../scikit-explain", develop = true }
+trustee = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 

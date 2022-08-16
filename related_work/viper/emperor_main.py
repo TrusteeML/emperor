@@ -9,8 +9,8 @@ from viper.python.viper.pong.dqn import DQNPolicy
 from viper.python.viper.pong.pong import get_pong_symbolic, get_pong_env
 from viper.python.viper.core.rl import get_rollouts, test_policy
 
-from skexplain.utils import log
-from skexplain.imitation import Trustee
+from trustee.utils import log
+from trustee import Trustee
 
 
 N_ROLLOUTS = 150  # 80 * (10+1)    # the same amount of total rollouts as viper: n_batch_rollouts * (max_iters + 1 (initial))

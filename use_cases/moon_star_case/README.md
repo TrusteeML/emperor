@@ -23,7 +23,7 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 
 3. Clone repository and move into use case directory
 ```
-git clone git@github.com:anon4papers/emperor.git
+git clone git@github.com:asjacobs92/emperor.git
 cd emperor/use_cases/moon-star_case/
 ```
 
@@ -69,7 +69,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 2. Clone repository and move into use case directory
 ```
-git clone git@github.com:anon4papers/emperor.git
+git clone git@github.com:asjacobs92/emperor.git
 cd emperor/use_cases/moon_star_case/
 ```
 

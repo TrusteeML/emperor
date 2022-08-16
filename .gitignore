@@ -5,7 +5,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-poetry.lock
 
 # C extensions
 *.so
@@ -133,14 +132,15 @@ dmypy.json
 .pyre/
 
 # Custom files
+*.tsv
 *.csv
 .DS_Store
-*.zip
 *.md5
 *.html
 *iot_case/res/dataset/original_files/
 *nprint_os_case/res/**/nprintml/*
-use_cases/nprint_ids_case/res/**/nprintml
+use_cases/nprint_ids_case/res/nprint_dataset/nprintml
+use_cases/nprint_ids_case/res/nprint_tcp_options_dataset/nprintml
 *dt_*
 max_depth_*
 max_leaves_*
@@ -150,5 +150,10 @@ ccp_*
 *.m4s
 *.obj
 
-*strawman*
+.vagrant
+
+RandomForestClassifier_cic_ids_2017.joblib.zip
+ablation/
+use_cases/heartbleed_case/res/dataset/CIC-IDS-2017_OverSampled.csv.zip
+use_cases/plot_ablation.py
 use_cases/pensieve_case/abr_browser_dir/chrome_data_dir/
