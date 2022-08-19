@@ -1,4 +1,4 @@
-# IoT Use Case
+# Moons and Stars (Toy) Use Case
 
 Trustee application to Neural Network Moon and Stars Shortcut learning toy example from [[1]](#references)          
 

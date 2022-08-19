@@ -1,4 +1,4 @@
-# IoT Use Case
+# nPrintML OS Fingerprinting Use Case
 
 Trustee application to the nPrintML [[1]](#references) AutoGluon Tabular Predictor [[2]](#references) <br>for an Intrustion Detection System, also trained using pcaps from the  CIC-IDS-2017 dataset [[3]](#references)
 

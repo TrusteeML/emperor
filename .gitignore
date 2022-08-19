@@ -136,7 +136,6 @@ dmypy.json
 *.csv
 .DS_Store
 *.md5
-*.html
 *iot_case/res/dataset/original_files/
 *nprint_os_case/res/**/nprintml/*
 use_cases/nprint_ids_case/res/nprint_dataset/nprintml

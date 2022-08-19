@@ -1,4 +1,4 @@
-# IoT Use Case
+# Pensive Use Case
 
 Trustee application to the Pensieve RL model [[1]](#references) for adaptive bit-rate prediction, <br>and comparison to related work Metis [[2]](#references).
 

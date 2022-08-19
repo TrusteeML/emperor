@@ -1,4 +1,4 @@
-# IoT Use Case
+# Heartbleed Use Case
 
  Trustee application to a Random Forest Classifier for an Intrustion Detection System, <br>trained with CIC-IDS-2017 dataset pre-computed features [[1]](#references)                         
 

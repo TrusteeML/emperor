@@ -1,4 +1,4 @@
-# IoT Use Case
+# Kitsune Use Case
 
 Trustee application to Kitsune [[1]](#references) model for anomaly detection in network traffic, <br>trained with features extracted from Kitsune's Mirai attack trace.
 
