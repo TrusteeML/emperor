@@ -30,6 +30,6 @@ The `trustee` library can be found [here](https://github.com/asjacobs92/trustee)
 	location     = {Los Angeles, CA, USA},
 	publisher    = {Association for Computing Machinery},
 	address      = {New York, NY, USA},
-	series       = {CCS '21}
+	series       = {CCS '22}
 }
 ```
