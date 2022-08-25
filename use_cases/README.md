@@ -12,7 +12,7 @@ A brief description of each use case can be found below.
 | `iot_case/`        | Trustee application to Random Forest Classifier to distguish IoT devices [[2]](#references), <br>trained with features extracted from the pcaps from the UNSW IoT Dataset [[3]](#references)                             |
 | `moon_star_case/`  | Trustee application to Neural Network Moon and Stars Shortcut learning toy example from [[4]](#references)                                                                                                               |
 | `nprint_ids_case/` | Trustee application to the nPrintML [[5]](#references) AutoGluon Tabular Predictor [[9]](#references) <br>for an Intrustion Detection System, also trained using pcaps from the  CIC-IDS-2017 dataset [[1]](#references) |
-| `nprint_ids_case/` | Trustee application to the nPrintML [[5]](#references) AutoGluon Tabular Predictor [[9]](#references) <br>for OS Fingerprinting, also trained using with pcaps from the CIC-IDS-2017 dataset [[1]](#references)          |
+| `nprint_os_case/`  | Trustee application to the nPrintML [[5]](#references) AutoGluon Tabular Predictor [[9]](#references) <br>for OS Fingerprinting, also trained using with pcaps from the CIC-IDS-2017 dataset [[1]](#references)          |
 | `pensieve_case/`   | Trustee application to the Pensieve RL model [[6]](#references) for adaptive bit-rate prediction, <br>and comparison to related work Metis [[7]](#references).                                                           |
 | `vpn_case/`        | Trustee application the 1D-CNN trained to detect VPN traffic from [[8]](#references),<br> trained with the ISCX VPN-nonVPN dataset [[10]](#references)                                                                   |
 
