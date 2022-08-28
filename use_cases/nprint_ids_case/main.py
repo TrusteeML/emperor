@@ -4,8 +4,7 @@ import graphviz
 from sklearn import tree
 
 from trustee.utils import log
-from trustee.report import TrustReport
-
+from trustee.report.trust import TrustReport
 from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators
 
@@ -54,25 +53,6 @@ def main():
             feature_names=X.columns,
             verbose=True,
         )
-
-    stable_explanations = trust_report.get_stable_explanations()
-    stability_output_dir = f"{OUTPUT_PATH}/stable"
-    if not os.path.exists(stability_output_dir):
-        os.makedirs(stability_output_dir)
-
-    logger.log("Saving stability decision trees...")
-    for idx, it in enumerate(stable_explanations):
-        print(it)
-        dot_data = tree.export_graphviz(
-            it["dt"],
-            class_names=sorted(trust_report.y.unique()),
-            feature_names=trust_report.feature_names,
-            filled=True,
-            rounded=True,
-            special_characters=True,
-        )
-        graph = graphviz.Source(dot_data)
-        graph.render(f"{stability_output_dir}/dt_{idx}")
 
     logger.log(trust_report)
     trust_report.save(OUTPUT_PATH)

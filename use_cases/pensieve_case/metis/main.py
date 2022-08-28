@@ -29,8 +29,7 @@ import pandas as pd
 from sklearn import tree
 from sklearn.metrics import classification_report
 
-from trustee.report import TrustReport
-
+from trustee.report.trust import TrustReport
 from sklearn_porter import Porter
 
 

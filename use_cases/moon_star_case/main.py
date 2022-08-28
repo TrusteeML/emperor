@@ -1,7 +1,9 @@
-# import random
+import os
+from re import L
 
 # from matplotlib import image
 import numpy as np
+import pandas as pd
 import cv2
 import torch
 import matplotlib.pyplot as plt
@@ -11,9 +13,11 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 from trustee.utils import log
-from trustee.report import TrustReport
+from trustee.report.trust import TrustReport
 
-# from torchvision.utils import make_grid as make_grid
+from torchvision.utils import make_grid as make_grid
+
+PLOT_IMAGES = False
 
 OUTPUT_PATH = "res/output"
 REPORT_PATH = f"{OUTPUT_PATH}/report/trust_report.obj"
@@ -39,10 +43,7 @@ def main():
         logger.log("Done!")
     else:
         bunny = np.load("res/dataset/bunny.npy")
-        bunny = bunny
-
         cow = np.load("res/dataset/cow.npy")
-        cow = cow
 
         num_rows, num_cols = bunny.shape[:2]
 
@@ -54,7 +55,7 @@ def main():
         biased_train_bun = []
         biased_train_cow = []
 
-        for i in range(1000):
+        for _ in range(1000):
             x_val = np.random.randint(46, 60)
             y_val = np.random.randint(39, 70)
             translation_matrix = np.float32([[1, 0, x_val], [0, 1, y_val]])
@@ -80,7 +81,7 @@ def main():
         unbiased_train_bun = []
         unbiased_train_cow = []
 
-        for i in range(2000):
+        for _ in range(2000):
             x_val = np.random.randint(-53, 60)
             y_val = np.random.randint(-65, 70)
             translation_matrix = np.float32([[1, 0, x_val], [0, 1, y_val]])
@@ -98,56 +99,51 @@ def main():
         unbiased_train_cow = np.array(unbiased_train_cow)
         unbiased_train_bun = np.array(unbiased_train_bun)
 
-        """# New Section"""
-
         unbiased_stars = unbiased_train_cow
         unbiased_moons = unbiased_train_bun
         biased_stars = biased_train_cow
         biased_moons = biased_train_bun
 
-        # np.set_printoptions(threshold=sys.maxsize)
+        if PLOT_IMAGES:
 
-        # logger.log("\n".join(["".join(["{}".format(item) for item in row]) for row in biased_stars[0]]))
-        # plogger.log(unbiased_stars[0])
+            def chunker(seq, size):
+                return (seq[pos : pos + size] for pos in range(0, len(seq), size))
 
-        # with open("res/img/map.csv", "w") as f:
-        #     count = 0
-        #     for row in biased_stars[random.randint(1, 1000)]:
-        #         for item in row:
-        #             f.write("{},".format(count))
-        #             count += 1
-        #         f.write("\n")
+            for idx, data in enumerate(chunker(biased_stars, 25)):
+                grid = make_grid(
+                    torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10
+                )
+                plt.axis("off")
+                plt.imsave(f"res/img/biased_stars/{idx}.png", grid.numpy().transpose(1, 2, 0))
+                plt.imshow(grid.numpy().transpose(1, 2, 0))
+                plt.close()
 
-        # def chunker(seq, size):
-        #     return (seq[pos : pos + size] for pos in range(0, len(seq), size))
+            for idx, data in enumerate(chunker(unbiased_stars, 25)):
+                grid = make_grid(
+                    torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10
+                )
+                plt.axis("off")
+                plt.imsave(f"res/img/unbiased_stars/{idx}.png", grid.numpy().transpose(1, 2, 0))
+                plt.imshow(grid.numpy().transpose(1, 2, 0))
+                plt.close()
 
-        # for idx, data in enumerate(chunker(biased_stars, 25)):
-        #     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-        #     plt.axis("off")
-        #     plt.imsave("res/img/biased_stars/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-        #     plt.imshow(grid.numpy().transpose(1, 2, 0))
-        #     plt.close()
+            for idx, data in enumerate(chunker(biased_moons, 25)):
+                grid = make_grid(
+                    torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10
+                )
+                plt.axis("off")
+                plt.imsave(f"res/img/biased_moons/{idx}.png", grid.numpy().transpose(1, 2, 0))
+                plt.imshow(grid.numpy().transpose(1, 2, 0))
+                plt.close()
 
-        # for idx, data in enumerate(chunker(unbiased_stars, 25)):
-        #     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-        #     plt.axis("off")
-        #     plt.imsave("res/img/unbiased_stars/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-        #     plt.imshow(grid.numpy().transpose(1, 2, 0))
-        #     plt.close()
-
-        # for idx, data in enumerate(chunker(biased_moons, 25)):
-        #     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-        #     plt.axis("off")
-        #     plt.imsave("res/img/biased_moons/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-        #     plt.imshow(grid.numpy().transpose(1, 2, 0))
-        #     plt.close()
-
-        # for idx, data in enumerate(chunker(unbiased_moons, 25)):
-        #     grid = make_grid(torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10)
-        #     plt.axis("off")
-        #     plt.imsave("res/img/unbiased_moons/{}.png".format(idx), grid.numpy().transpose(1, 2, 0))
-        #     plt.imshow(grid.numpy().transpose(1, 2, 0))
-        #     plt.close()
+            for idx, data in enumerate(chunker(unbiased_moons, 25)):
+                grid = make_grid(
+                    torch.from_numpy(np.float32(data)).view(25, 1, 200, 200), nrow=5, pad_value=1, padding=10
+                )
+                plt.axis("off")
+                plt.imsave(f"res/img/unbiased_moons/{idx}.png", grid.numpy().transpose(1, 2, 0))
+                plt.imshow(grid.numpy().transpose(1, 2, 0))
+                plt.close()
 
         unbiased_data = np.concatenate((unbiased_stars, unbiased_moons))
         unbiased_data = torch.from_numpy(np.float32(unbiased_data))
@@ -176,6 +172,15 @@ def main():
                 return x
 
             def fit(self, X, y, batch_size=100, epochs=1):
+                if isinstance(X, np.ndarray):
+                    X = torch.from_numpy(X)
+                if isinstance(X, pd.DataFrame):
+                    X = torch.tensor(X.astype(np.float32).values)
+                if isinstance(y, np.ndarray):
+                    y = torch.from_numpy(y)
+                if isinstance(y, pd.Series):
+                    y = torch.tensor(y.astype(np.float32).values)
+
                 train_data = utils.TensorDataset(X, y)
                 train_loader = utils.DataLoader(train_data, batch_size=batch_size, shuffle=True)
 
@@ -213,8 +218,12 @@ def main():
                         correct += (predicted == target).sum().item()
                 logger.log("Train Acc: " + str(correct / total))
 
-            def predict(self, x):
-                net_out = self(x).squeeze()
+            def predict(self, X):
+                if isinstance(X, np.ndarray):
+                    X = torch.from_numpy(X)
+                if isinstance(X, pd.DataFrame):
+                    X = torch.tensor(X.astype(np.float32).values)
+                net_out = self(X).squeeze()
                 _, predicted = torch.max(net_out.data, 1)
                 return predicted
 
@@ -225,13 +234,15 @@ def main():
         X_test = torch.tensor([], dtype=torch.long)
         y_test = torch.tensor([], dtype=torch.long)
 
-        for idx, (data, target) in enumerate(train_loader):
+        for (data, target) in train_loader:
             X_train = torch.cat((X_train, data.view(-1, 200 * 200)))
             y_train = torch.cat((y_train, target.squeeze()))
 
-        for idx, (data, target) in enumerate(test_loader):
+        for (data, target) in test_loader:
             X_test = torch.cat((X_test, data.view(-1, 200 * 200)))
             y_test = torch.cat((y_test, target.squeeze()))
+
+        net.fit(X_train, y_test)
 
         trust_report = TrustReport(
             net,
@@ -242,8 +253,10 @@ def main():
             max_iter=10,
             num_pruning_iter=0,
             trustee_num_iter=10,
+            trustee_num_stability_iter=1,
             class_names=["star", "moon"],
             logger=logger,
+            verbose=True,
         )
 
     logger.log(trust_report)

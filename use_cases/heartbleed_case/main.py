@@ -3,7 +3,7 @@ import graphviz
 
 from sklearn import tree
 
-from trustee.report import TrustReport
+from trustee.report.trust import TrustReport
 from trustee.utils import dataset, log, persist
 from trustee.utils.const import CIC_IDS_2017_DATASET_META
 
@@ -63,36 +63,8 @@ def main():
             verbose=True,
         )
 
-        dt_y_pred = trust_report.max_dt.predict(X)
-        y_pred = trust_report.blackbox.predict(X)
-        logger.log("Explanation classification report will all data:")
-        logger.log(f"{classification_report(y, y_pred, digits=3, target_names=CIC_IDS_2017_DATASET_META['classes'])}")
-        logger.log("Explanation fidelity report will all data:")
-        logger.log(
-            f"{classification_report(y_pred, dt_y_pred, digits=3, target_names=CIC_IDS_2017_DATASET_META['classes'])}"
-        )
-
-    stable_explanations = trust_report.get_stable_explanations()
-    stability_output_dir = f"{OUTPUT_PATH}/stable"
-    if not os.path.exists(stability_output_dir):
-        os.makedirs(stability_output_dir)
-
-    logger.log("Saving stability decision trees...")
-    for idx, it in enumerate(stable_explanations):
-        print(it)
-        dot_data = tree.export_graphviz(
-            it["dt"],
-            class_names=CIC_IDS_2017_DATASET_META["classes"],
-            feature_names=trust_report.feature_names,
-            filled=True,
-            rounded=True,
-            special_characters=True,
-        )
-        graph = graphviz.Source(dot_data)
-        graph.render(f"{stability_output_dir}/dt_{idx}")
-
     logger.log(trust_report)
-    trust_report.save(OUTPUT_PATH)  # , save_dts=True)
+    trust_report.save(OUTPUT_PATH)
 
 
 if __name__ == "__main__":

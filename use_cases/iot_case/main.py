@@ -1,6 +1,6 @@
 import os
 
-from trustee.report import TrustReport
+from trustee.report.trust import TrustReport
 from trustee.utils import dataset, log
 from trustee.utils.const import IOT_DATASET_META
 

@@ -10,8 +10,7 @@ from sklearn import tree
 from sklearn.metrics import classification_report
 
 from trustee.utils import log
-from trustee.report import TrustReport
-
+from trustee.report.trust import TrustReport
 
 from deeptraffic import DeepTraffic
 
@@ -36,8 +35,6 @@ def main():
     else:
         logger.log("DeepTraffic Validation Script Start")
         dataset = input_data.read_data_sets(DATA_DIR, one_hot=True, num_classes=CLASS_NUM)
-
-        print(type(dataset))
 
         class_names = dict_2class.values()
         logger.log("Initializing DeepTraffic")
@@ -72,24 +69,6 @@ def main():
             verbose=False,
         )
         deep_traffic.sess.close()
-
-    stable_explanations = trust_report.get_stable_explanations()
-    stability_output_dir = f"{OUTPUT_PATH}/stable"
-    if not os.path.exists(stability_output_dir):
-        os.makedirs(stability_output_dir)
-
-    logger.log("Saving stability decision trees...")
-    for idx, it in enumerate(stable_explanations):
-        dot_data = tree.export_graphviz(
-            it["dt"],
-            class_names=list(class_names),
-            feature_names=trust_report.feature_names,
-            filled=True,
-            rounded=True,
-            special_characters=True,
-        )
-        graph = graphviz.Source(dot_data)
-        graph.render(f"{stability_output_dir}/dt_{idx}")
 
     trust_report.save(OUTPUT_PATH)
     logger.log(trust_report)

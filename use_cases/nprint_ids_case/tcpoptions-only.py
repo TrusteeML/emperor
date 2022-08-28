@@ -2,8 +2,7 @@ import os
 import numpy as np
 
 from trustee.utils import log
-from trustee.report import TrustReport
-
+from trustee.report.trust import TrustReport
 from autogluon.tabular import TabularPredictor
 from nprintml.label.aggregator import registry as aggregators
 

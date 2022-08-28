@@ -13,7 +13,7 @@ scapy = "^2.4.5"
 Cython = "^0.29.30"
 pandas = "^1.4.3"
 dpkt = "^1.9.7"
-trustee = "^1.0.0"
+trustee = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
 

@@ -9,8 +9,7 @@ import pandas as pd
 from sklearn import tree
 
 from trustee.utils import log
-from trustee.report import TrustReport
-
+from trustee.report.trust import TrustReport
 from Kitsune import Kitsune
 
 ##############################################################################
@@ -117,24 +116,6 @@ def main():
             verbose=True,
             is_classify=False,
         )
-
-    stable_explanations = trust_report.get_stable_explanations()
-    stability_output_dir = f"{OUTPUT_PATH}/stable"
-    if not os.path.exists(stability_output_dir):
-        os.makedirs(stability_output_dir)
-
-    logger.log("Saving stability decision trees...")
-    for idx, it in enumerate(stable_explanations):
-        logger.log(it)
-        dot_data = tree.export_graphviz(
-            it["dt"],
-            feature_names=feature_names,
-            filled=True,
-            rounded=True,
-            special_characters=True,
-        )
-        graph = graphviz.Source(dot_data)
-        graph.render(f"{stability_output_dir}/dt_{idx}")
 
     logger.log(trust_report)
     trust_report.save(OUTPUT_PATH)
