@@ -14,6 +14,7 @@ The `trustee` library can be found [here](https://github.com/asjacobs92/trustee)
 
 | Folder          | Description                                                              |
 | --------------- | ------------------------------------------------------------------------ |
+| `docs/`         | Additional documentation. Technical report with additional results.      |
 | `use_cases/`    | Reproducible artifacts for each of the use cases presented in the paper. |
 | `related_work/` | Reproducible artifacts for the related work we compared our work with.   |
 
