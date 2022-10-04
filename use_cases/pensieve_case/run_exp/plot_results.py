@@ -232,7 +232,7 @@ def main():
             # colors = [COLOR_MAP(i) for i in np.linspace(0, 1, len(ax.lines))]
             for i, j in enumerate(ax.lines):
                 j.set_color(colors[i])
-            plt.ylabel("Buffer Size (ms)", fontname=FONT_NAME, fontweight=FONT_WEIGHT, fontsize=12)
+            plt.ylabel("Buffer Size (s)", fontname=FONT_NAME, fontweight=FONT_WEIGHT, fontsize=12)
 
             ax = fig.add_subplot(313)
             for scheme in SCHEMES:

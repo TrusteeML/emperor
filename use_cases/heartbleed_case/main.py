@@ -1,14 +1,9 @@
 import os
-import graphviz
-
-from sklearn import tree
 
 from trustee.report.trust import TrustReport
 from trustee.utils import dataset, log, persist
 from trustee.utils.const import CIC_IDS_2017_DATASET_META
 
-
-from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
 
 
