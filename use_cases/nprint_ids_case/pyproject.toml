@@ -11,7 +11,7 @@ pandas = "^1.1.0"
 pydotplus = "^2.0.2"
 pcap-splitter = "^1.0.0"
 nprintml = "^1.1.2"
-trustee = "^1.1.1"
+trustee = "^1.1.2"
 autogluon = ">=0.1.0"
 
 [tool.poetry.dev-dependencies]

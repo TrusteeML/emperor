@@ -12,7 +12,6 @@ scipy = "1.2.1"
 keras = "2.2.4"
 tensorflow = "1.14"
 sklearn = "^0.0"
-rootpath = "^0.1.1"
 setuptools = "^62.1.0"
 graphviz = "^0.20"
 
