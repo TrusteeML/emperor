@@ -1,5 +1,4 @@
 import os
-from re import L
 
 # from matplotlib import image
 import numpy as np
@@ -225,7 +224,7 @@ def main():
                     X = torch.tensor(X.astype(np.float32).values)
                 net_out = self(X).squeeze()
                 _, predicted = torch.max(net_out.data, 1)
-                return predicted
+                return predicted.numpy()
 
         net = Net()
 
@@ -246,10 +245,10 @@ def main():
 
         trust_report = TrustReport(
             net,
-            X_train=X_train,
-            X_test=X_test,
-            y_train=y_train,
-            y_test=y_test,
+            X_train=X_train.numpy(),
+            X_test=X_test.numpy(),
+            y_train=y_train.numpy(),
+            y_test=y_test.numpy(),
             max_iter=10,
             num_pruning_iter=0,
             trustee_num_iter=10,
@@ -257,6 +256,7 @@ def main():
             class_names=["star", "moon"],
             logger=logger,
             verbose=True,
+            skip_retrain=True,
         )
 
     logger.log(trust_report)

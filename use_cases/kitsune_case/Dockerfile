@@ -1,4 +1,4 @@
-FROM python:3.7.17
+FROM python:3.8.12
 
 # just in case
 ENV DEBIAN_FRONTEND=noninteractive
@@ -16,4 +16,3 @@ COPY . /emperor
 WORKDIR /emperor
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-

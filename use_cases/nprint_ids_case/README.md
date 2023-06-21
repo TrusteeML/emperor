@@ -88,6 +88,13 @@ cd emperor/use_cases/nprint_ids_case/
 
 ### Run use case 
 
+1. Run Makefile to build and run code in a Docker container
+```
+make
+```
+
+OR
+
 1. Build Docker image
 ```
 docker build . -t emperor-nprint-ids
@@ -95,7 +102,7 @@ docker build . -t emperor-nprint-ids
 
 2. Run use case inside docker container
 ```
-docker run -it --name emperor-nprint-ids -v /<path_to_repository>/emperor/use_cases/nprint_ids_case/res:/emperor/res/ emperor-nprint-ids python main.py 
+docker run -it --name emperor-nprint-ids -v $(pwd)/emperor/use_cases/nprint_ids_case/res:/emperor/res/ emperor-nprint-ids python main.py 
 ```
 
 ### Check results

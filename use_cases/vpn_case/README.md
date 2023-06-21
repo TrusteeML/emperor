@@ -74,6 +74,14 @@ cd emperor/use_cases/vpn_case/
 
 ### Run use case 
 
+1. Run Makefile to build and run code in a Docker container
+```
+make
+```
+
+OR
+
+
 1. Build Docker image
 ```
 docker build . -t emperor-vpn
@@ -81,7 +89,7 @@ docker build . -t emperor-vpn
 
 2. Run use case inside docker container
 ```
-docker run -it --name emperor-vpn -v /<path_to_repository>/emperor/use_cases/vpn_case/res:/emperor/res/ emperor-vpn python main.py 
+docker run -it --name emperor-vpn -v $(pwd)/emperor/use_cases/vpn_case/res:/emperor/res/ emperor-vpn python main.py 
 ```
 
 ### Check results

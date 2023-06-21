@@ -1,6 +1,5 @@
 import os
 import csv
-import graphviz
 
 import scipy.stats
 import numpy as np

@@ -75,12 +75,19 @@ cd emperor/use_cases/heartbleed_case/
 
 ### Run use case 
 
+1. Run Makefile to build and run code in a Docker container
+```
+make
+```
+
+OR
+
 1. Build Docker image
 ```
 docker build . -t emperor-heartbleed
 ```
 
-2. Run use case inside docker container
+1. Run use case inside docker container
 ```
 docker run -it --name emperor-heartbleed -v /<path_to_repository>/emperor/use_cases/heartbleed_case/res:/emperor/res/ emperor-heartbleed python main.py 
 ```

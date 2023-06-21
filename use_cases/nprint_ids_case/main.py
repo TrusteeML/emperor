@@ -1,7 +1,4 @@
 import os
-import graphviz
-
-from sklearn import tree
 
 from trustee.utils import log
 from trustee.report.trust import TrustReport

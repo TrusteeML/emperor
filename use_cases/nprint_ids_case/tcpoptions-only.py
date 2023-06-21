@@ -1,5 +1,4 @@
 import os
-import numpy as np
 
 from trustee.utils import log
 from trustee.report.trust import TrustReport
