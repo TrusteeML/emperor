@@ -50,7 +50,7 @@ python validation.py
 
 ### Check results
 
-The results of the Truste Report and Trustee can be found at the `./res/output/` directory.
+The results of the Trust Report and Trustee can be found at the `./res/output/` directory.
 
 
 ## Running use case with Docker 
@@ -89,12 +89,12 @@ docker build . -t emperor-vpn
 
 2. Run use case inside docker container
 ```
-docker run -it --name emperor-vpn -v $(pwd)/emperor/use_cases/vpn_case/res:/emperor/res/ emperor-vpn python main.py 
+docker run -it -rm --name emperor-vpn -v $(pwd)/emperor/use_cases/vpn_case/res:/emperor/res/ emperor-vpn python main.py 
 ```
 
 ### Check results
 
-The results of the Truste Report and Trustee can be found at the `./res/output/` directory.
+The results of the Trust Report and Trustee can be found at the `./res/output/` directory.
 
 ## References
 

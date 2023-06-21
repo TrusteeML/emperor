@@ -51,7 +51,7 @@ python run_shap.py
 
 ### Check results
 
-The results of the Truste Report and Trustee can be found at the `./res/output/` directory.
+The results of the Trust Report and Trustee can be found at the `./res/output/` directory.
 
 
 ## Running use case with Docker 
@@ -90,12 +90,12 @@ docker build . -t emperor-moon-star
 
 2. Run use case inside docker container
 ```
-docker run -it --name emperor-moon-star -v $(pwd)/emperor/use_cases/moon_star_case/res:/emperor/res/ emperor-moon-star python main.py 
+docker run -it -rm --name emperor-moon-star -v $(pwd)/emperor/use_cases/moon_star_case/res:/emperor/res/ emperor-moon-star python main.py 
 ```
 
 ### Check results
 
-The results of the Truste Report and Trustee can be found at the `./res/output/` directory.
+The results of the Trust Report and Trustee can be found at the `./res/output/` directory.
 
 ## References
 
