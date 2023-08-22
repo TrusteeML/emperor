@@ -44,8 +44,8 @@ class FE:
 
     def __getstate__(self):
         state = self.__dict__.copy()
-        del state["tsvinf"]
-        del state["tsvin"]
+        state.pop("tsvinf", None)
+        state.pop("tsvin", None)
         return state
 
     def __setstate__(self, state):
